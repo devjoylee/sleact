@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Label, Input, LinkContainer, Button, Header } from './styles';
+import { AuthLayout } from 'components';
+import { Form, Label, Input, LinkContainer, Button } from 'components/Layout/AuthLayout/styles';
 
 export const SignUpPage = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -8,8 +9,7 @@ export const SignUpPage = () => {
   };
 
   return (
-    <div id='signup_page'>
-      <Header>Slack</Header>
+    <AuthLayout>
       <Form onSubmit={handleSubmit}>
         <Label id='email-label'>
           <span>이메일 주소</span>
@@ -33,6 +33,6 @@ export const SignUpPage = () => {
         이미 회원이신가요?&nbsp;
         <Link to='/login'>로그인 하러가기</Link>
       </LinkContainer>
-    </div>
+    </AuthLayout>
   );
 };
