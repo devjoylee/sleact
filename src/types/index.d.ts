@@ -3,4 +3,5 @@ export interface Auth {
   nickname?: string;
   password: string;
   passwordCheck?: string;
+  [key: string]: string;
 }

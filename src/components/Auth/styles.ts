@@ -1,11 +1,5 @@
 import styled from '@emotion/styled';
 
-export const Form = styled.form`
-  margin: 0 auto;
-  width: 400px;
-  max-width: 400px;
-`;
-
 export const Label = styled.label`
   margin-bottom: 16px;
   width: 100%;
@@ -43,7 +37,6 @@ export const Input = styled.input`
 `;
 
 export const Button = styled.button`
-  margin-bottom: 12px;
   width: 100%;
   max-width: 100%;
   color: #fff;
@@ -79,20 +72,4 @@ export const Error = styled.div`
 export const Success = styled.div`
   color: #2eb67d;
   font-weight: bold;
-`;
-
-export const LinkContainer = styled.p`
-  font-size: 13px;
-  color: #616061;
-  margin: 0 auto 8px;
-  width: 400px;
-  max-width: 400px;
-  & a {
-    color: #1264a3;
-    text-decoration: none;
-    font-weight: 700;
-    &:hover {
-      text-decoration: underline;
-    }
-  }
 `;

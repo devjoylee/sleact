@@ -3,7 +3,7 @@ import { AuthLayout, SignUpForm } from 'components';
 
 export const SignUpPage = () => {
   return (
-    <AuthLayout>
+    <AuthLayout type='signup'>
       <SignUpForm />
     </AuthLayout>
   );

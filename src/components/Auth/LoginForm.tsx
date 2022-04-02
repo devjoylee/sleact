@@ -1,21 +1,24 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Form, Input, Label, Error, Button, LinkContainer } from './styles';
+import { Input, Label, Error, Button } from './styles';
 import useForm from 'hooks/useForm';
 
 export const LoginForm = () => {
-  const { values, handleChange, handleSubmit } = useForm({
+  const { values, errors, handleChange, handleClick } = useForm({
     email: '',
     password: '',
   });
 
   const { email, password } = values;
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
+
   return (
-    <Form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <Label htmlFor='email'>
         <span>이메일 주소</span>
-        <Input type='email' id='email' name='email' value={email} onChange={handleChange} />
+        <Input type='text' id='email' name='email' value={email} onChange={handleChange} />
       </Label>
       <Label htmlFor='password'>
         <span>비밀번호</span>
@@ -26,13 +29,15 @@ export const LoginForm = () => {
           value={password}
           onChange={handleChange}
         />
-        <Error>이메일과 비밀번호 조합이 일치하지 않습니다.</Error>
       </Label>
-      <Button type='submit'>로그인</Button>
-      <LinkContainer>
-        아직 회원이 아니신가요?&nbsp;
-        <Link to='/signup'>회원가입 하러가기</Link>
-      </LinkContainer>
-    </Form>
+
+      {Object.keys(errors).map((error, i) => (
+        <Error key={i}>{errors[error]}</Error>
+      ))}
+
+      <Button type='submit' onClick={handleClick}>
+        로그인
+      </Button>
+    </form>
   );
 };

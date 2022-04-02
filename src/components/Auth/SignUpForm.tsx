@@ -1,23 +1,29 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Form, Input, Label, Error, Button, LinkContainer } from './styles';
+import { Input, Label, Error, Button } from './styles';
 import useForm from 'hooks/useForm';
 
 export const SignUpForm = () => {
-  const { values, handleChange, handleSubmit } = useForm({
-    email: '',
-    nickname: '',
-    password: '',
-    passwordCheck: '',
-  });
+  const { values, errors, handleChange, handleClick } = useForm(
+    {
+      email: '',
+      nickname: '',
+      password: '',
+      passwordCheck: '',
+    },
+    'signup'
+  );
 
   const { email, nickname, password, passwordCheck } = values;
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
+
   return (
-    <Form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <Label htmlFor='email'>
         <span>이메일 주소</span>
-        <Input type='email' id='email' name='email' value={email} onChange={handleChange} />
+        <Input type='text' id='email' name='email' value={email} onChange={handleChange} />
       </Label>
       <Label htmlFor='nickname'>
         <span>닉네임</span>
@@ -49,11 +55,14 @@ export const SignUpForm = () => {
           onChange={handleChange}
         />
       </Label>
-      <Button type='submit'>회원가입</Button>
-      <LinkContainer>
-        이미 회원이신가요?&nbsp;
-        <Link to='/login'>로그인 하러가기</Link>
-      </LinkContainer>
-    </Form>
+
+      {Object.keys(errors).map((error, i) => (
+        <Error key={i}>{errors[error]}</Error>
+      ))}
+
+      <Button type='submit' onClick={handleClick}>
+        회원가입
+      </Button>
+    </form>
   );
 };

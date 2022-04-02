@@ -3,7 +3,7 @@ import { AuthLayout, LoginForm } from 'components';
 
 export const LoginPage = () => {
   return (
-    <AuthLayout>
+    <AuthLayout type='login'>
       <LoginForm />
     </AuthLayout>
   );
