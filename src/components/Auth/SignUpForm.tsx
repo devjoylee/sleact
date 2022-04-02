@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { AuthLayout } from 'components';
-import { Form, Label, Input, LinkContainer, Button } from 'components/Layout/AuthLayout/styles';
+import { Link } from 'react-router-dom';
+import { Form, Input, Label, Error, Button, LinkContainer } from './styles';
 
-export const SignUpPage = () => {
+export const SignUpForm = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
