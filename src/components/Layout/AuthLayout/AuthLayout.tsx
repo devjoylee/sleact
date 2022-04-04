@@ -9,7 +9,7 @@ interface AuthLayoutProps {
 
 export const AuthLayout = ({ type, children }: AuthLayoutProps) => {
   return (
-    <AuthContainer>
+    <AuthContainer className={`${type}_page`}>
       <Header>Slack</Header>
       {children}
       {type === 'login' && (

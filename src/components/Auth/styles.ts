@@ -1,8 +1,10 @@
 import styled from '@emotion/styled';
 
 export const Label = styled.label`
-  margin-bottom: 16px;
   width: 100%;
+  & + label {
+    margin-top: 20px;
+  }
   & > span {
     display: block;
     text-align: left;
@@ -20,7 +22,6 @@ export const Input = styled.input`
   border: 1px solid var(--saf-0);
   transition: border 80ms ease-out, box-shadow 80ms ease-out;
   box-sizing: border-box;
-  margin: 0 0 20px;
   width: 100%;
   color: rgba(var(--sk_primary_foreground, 29, 28, 29), 1);
   background-color: rgba(var(--sk_primary_background, 255, 255, 255), 1);
@@ -39,6 +40,7 @@ export const Input = styled.input`
 export const Button = styled.button`
   width: 100%;
   max-width: 100%;
+  margin-top: 25px;
   color: #fff;
   background-color: #4a154b;
   border: none;
@@ -63,13 +65,17 @@ export const Button = styled.button`
   }
 `;
 
-export const Error = styled.div`
+export const Error = styled.p`
   color: #e01e5a;
-  margin: 8px 0 16px;
+  margin-top: 10px;
   font-weight: bold;
+
+  &:last-child {
+    margin-bottom: -10px;
+  }
 `;
 
-export const Success = styled.div`
+export const Success = styled.p`
   color: #2eb67d;
   font-weight: bold;
 `;

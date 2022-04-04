@@ -1,8 +1,9 @@
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { LoginPage, SignUpPage } from 'pages';
 import { Global } from '@emotion/react';
 import { reset } from 'styles/reset';
+import { WorkspaceLayout } from 'components';
+import { LoginPage, SignUpPage, ChannelPage, DMPage } from 'pages';
 
 const App = () => {
   return (
@@ -12,6 +13,10 @@ const App = () => {
         <Route path='/' element={<Navigate replace to='/login' />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/signup' element={<SignUpPage />} />
+        <Route path='/workspace' element={<WorkspaceLayout />}>
+          <Route path='channel' element={<ChannelPage />} />
+          <Route path='dm' element={<DMPage />} />
+        </Route>
       </Routes>
     </>
   );
