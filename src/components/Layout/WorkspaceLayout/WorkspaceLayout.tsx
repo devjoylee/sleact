@@ -1,24 +1,12 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import {
-  WorkspaceHeader,
-  WorkspaceContents,
-  List,
-  WorkspaceName,
-  WorkspaceBar,
-  ChannelBar,
-  Chats,
-} from './styles';
+import { WspaceHeader } from 'components';
+import { WorkspaceContents, List, WorkspaceName, WorkspaceBar, ChannelBar, Chats } from './styles';
 
 export const WorkspaceLayout = () => {
   return (
-    <div>
-      <WorkspaceHeader>
-        <img
-          src='https://s3-ap-northeast-1.amazonaws.com/ojuz-attach/profile/images/GioChkhaidze'
-          alt='profile'
-        />
-      </WorkspaceHeader>
+    <div className='workspace'>
+      <WspaceHeader />
       <WorkspaceContents>
         <WorkspaceBar>Test</WorkspaceBar>
         <ChannelBar>
