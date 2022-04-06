@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { UserSetting } from 'components';
-import { WorkspaceHeader, UserProfile } from './styles';
+import { WspaceHeader, UserProfile } from './styles';
 
-export const WspaceHeader = () => {
+export const WorkspaceHeader = () => {
   const [showUserSetting, setShowUserSetting] = useState(false);
   const handleClick = () => {
     setShowUserSetting((prev) => !prev);
   };
 
   return (
-    <WorkspaceHeader>
+    <WspaceHeader>
       <UserProfile onClick={handleClick}>
         <img
           src='https://s3-ap-northeast-1.amazonaws.com/ojuz-attach/profile/images/GioChkhaidze'
@@ -17,6 +17,6 @@ export const WspaceHeader = () => {
         />
       </UserProfile>
       {showUserSetting && <UserSetting handleClose={handleClick} />}
-    </WorkspaceHeader>
+    </WspaceHeader>
   );
 };

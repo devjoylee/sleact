@@ -7,5 +7,6 @@ export { LoginForm } from './Auth/LoginForm';
 export { SignUpForm } from './Auth/SignUpForm';
 
 // Workspace
-export { WspaceHeader } from './Workspace/WspaceHeader';
-export { UserSetting } from './Workspace/UserSetting';
+export { WorkspaceHeader } from './Workspace/WorkspaceHeader/WorkspaceHeader';
+export { UserSetting } from './Workspace/WorkspaceHeader/UserSetting';
+export { WorkspaceList } from './Workspace/WorkspaceList/WorkspaceList';

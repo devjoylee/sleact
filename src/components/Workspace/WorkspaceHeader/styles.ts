@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { COLOR, STYLE } from 'styles/variables';
 
-export const WorkspaceHeader = styled.header`
+export const WspaceHeader = styled.header`
   display: flex;
   justify-content: flex-end;
   align-items: center;

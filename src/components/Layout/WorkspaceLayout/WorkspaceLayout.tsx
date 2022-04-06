@@ -1,14 +1,14 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import { WspaceHeader } from 'components';
-import { WorkspaceContents, List, WorkspaceName, WorkspaceBar, ChannelBar, Chats } from './styles';
+import { WorkspaceHeader, WorkspaceList } from 'components';
+import { WorkspaceContents, List, WorkspaceName, ChannelBar, Chats } from './styles';
 
 export const WorkspaceLayout = () => {
   return (
     <div className='workspace'>
-      <WspaceHeader />
+      <WorkspaceHeader />
       <WorkspaceContents>
-        <WorkspaceBar>Test</WorkspaceBar>
+        <WorkspaceList />
         <ChannelBar>
           <WorkspaceName>Slack 공부방</WorkspaceName>
           <List>Menu</List>
