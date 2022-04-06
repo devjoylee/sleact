@@ -13,7 +13,7 @@ export const ListContainer = styled.div`
   text-align: center;
   padding: 15px 0 0;
 
-  svg {
+  & > svg {
     font-size: 25px;
     color: #fff;
     cursor: pointer;
@@ -43,7 +43,7 @@ export const WspaceList = styled.ul`
     &:hover {
       box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
     }
-    &:first-child {
+    &:first-of-type {
       box-shadow: 0 0 0 3px rgba(255, 255, 255, 1);
     }
   }
