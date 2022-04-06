@@ -6,7 +6,7 @@ interface Props {
   handleClose: () => void;
 }
 
-const Modal: FC<Props> = ({ children, handleClose }) => {
+export const Modal: FC<Props> = ({ children, handleClose }) => {
   return (
     <ModalOverlay className='modal-overlay' onClick={handleClose}>
       <div className='modal' onClick={(e) => e.stopPropagation()}>
@@ -16,5 +16,3 @@ const Modal: FC<Props> = ({ children, handleClose }) => {
     </ModalOverlay>
   );
 };
-
-export default Modal;

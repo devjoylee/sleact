@@ -10,3 +10,4 @@ export { SignUpForm } from './Auth/SignUpForm';
 export { WorkspaceHeader } from './Workspace/WorkspaceHeader/WorkspaceHeader';
 export { UserSetting } from './Workspace/WorkspaceHeader/UserSetting';
 export { WorkspaceList } from './Workspace/WorkspaceList/WorkspaceList';
+export { Modal } from './Workspace/Modal/Modal';

@@ -1,22 +1,23 @@
 import React, { useState } from 'react';
 import { ListContainer, WspaceList } from './styles';
 import { MdAdd } from 'react-icons/md';
-import Modal from '../Modal/Modal';
+import { Modal } from 'components';
 import { Button, Input, Label } from 'components/Auth/styles';
 import useForm from 'hooks/useForm';
 
 export const WorkspaceList = () => {
   const [showModal, setShowModal] = useState(false);
-  // const { values } = useForm({
-  //   wsname: '',
-  //   wsurl: '',
-  // });
+  const { values, handleChange } = useForm({
+    wsname: '',
+    wsurl: '',
+  });
+  const { wsname, wsurl } = values;
 
-  const handleModalClose = () => {
-    setShowModal(false);
-  };
-  const handleAddItem = () => {
-    setShowModal(true);
+  const handleModalClose = () => setShowModal(false);
+  const handleAddItem = () => setShowModal(true);
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(values);
   };
 
   return (
@@ -31,14 +32,20 @@ export const WorkspaceList = () => {
       <MdAdd onClick={handleAddItem} />
       {showModal && (
         <Modal handleClose={handleModalClose}>
-          <form>
+          <form onSubmit={handleSubmit}>
             <Label htmlFor='wsname'>
               <span>워크스페이스 이름</span>
-              <Input type='text' id='wsname' name='wsname' />
+              <Input
+                type='text'
+                id='wsname'
+                name='wsname'
+                value={wsname}
+                onChange={handleChange}
+              />
             </Label>
             <Label htmlFor='wsurl'>
               <span>워크스페이스 url</span>
-              <Input type='text' id='wsurl' name='wsurl' />
+              <Input type='text' id='wsurl' name='wsurl' value={wsurl} onChange={handleChange} />
             </Label>
             <Button type='submit'>생성하기</Button>
           </form>

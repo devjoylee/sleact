@@ -1,10 +1,7 @@
 import { useState } from 'react';
-import { Auth } from 'types';
-import validate from 'utils/validate';
 
-function useForm(initialValues: Auth, type?: string) {
+function useForm<T>(initialValues: T) {
   const [values, setValues] = useState(initialValues);
-  const [errors, setErrors] = useState({} as Auth);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -14,12 +11,7 @@ function useForm(initialValues: Auth, type?: string) {
     });
   };
 
-  const handleClick = async () => {
-    const error = await validate(values, type);
-    setErrors(error);
-  };
-
-  return { values, errors, handleChange, handleClick };
+  return { values, handleChange };
 }
 
 export default useForm;

@@ -1,13 +1,15 @@
 import React from 'react';
 import { Input, Label, Error, Button } from './styles';
 import useForm from 'hooks/useForm';
+import validate from 'utils/validate';
+import useValidate from 'hooks/useValidate';
 
 export const LoginForm = () => {
-  const { values, errors, handleChange, handleClick } = useForm({
+  const { values, handleChange } = useForm({
     email: '',
     password: '',
   });
-
+  const { errors, handleFormCheck } = useValidate(values, validate);
   const { email, password } = values;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -35,7 +37,7 @@ export const LoginForm = () => {
         <Error key={i}>{errors[error]}</Error>
       ))}
 
-      <Button type='submit' onClick={handleClick}>
+      <Button type='submit' onClick={handleFormCheck}>
         로그인
       </Button>
     </form>
