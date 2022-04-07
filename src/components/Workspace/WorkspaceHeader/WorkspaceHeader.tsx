@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { UserSetting } from 'components';
+import { UserDropdown } from 'components';
 import { WspaceHeader, UserProfile } from './styles';
 
 export const WorkspaceHeader = () => {
-  const [showUserSetting, setShowUserSetting] = useState(false);
+  const [dropdown, setDropdown] = useState(false);
   const handleClick = () => {
-    setShowUserSetting((prev) => !prev);
+    setDropdown((prev) => !prev);
   };
 
   return (
@@ -16,7 +16,7 @@ export const WorkspaceHeader = () => {
           alt='profile'
         />
       </UserProfile>
-      {showUserSetting && <UserSetting handleClose={handleClick} />}
+      {dropdown && <UserDropdown handleClose={handleClick} />}
     </WspaceHeader>
   );
 };

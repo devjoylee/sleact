@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import { WorkspaceHeader, WorkspaceList } from 'components';
-import { WorkspaceContents, List, WorkspaceName, ChannelBar, Chats } from './styles';
+import { WorkspaceHeader, WorkspaceList, ChannelList } from 'components';
+import { WorkspaceContents, Chats } from './styles';
 
 export const WorkspaceLayout = () => {
   return (
@@ -9,10 +9,7 @@ export const WorkspaceLayout = () => {
       <WorkspaceHeader />
       <WorkspaceContents>
         <WorkspaceList />
-        <ChannelBar>
-          <WorkspaceName>Slack 공부방</WorkspaceName>
-          <List>Menu</List>
-        </ChannelBar>
+        <ChannelList />
         <Chats>
           <Outlet />
         </Chats>

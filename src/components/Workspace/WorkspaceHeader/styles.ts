@@ -53,19 +53,9 @@ export const UserInfo = styled.div`
     font-size: 17px;
     font-weight: bold;
     margin-bottom: 3px;
+    line-height: 1;
   }
   .user-active {
     font-size: 13px;
-  }
-`;
-
-export const LogOutButton = styled.button`
-  width: 100%;
-  display: block;
-  padding: 7px 20px;
-  font-size: 14px;
-  cursor: pointer;
-  &:hover {
-    background-color: #fafafa;
   }
 `;
