@@ -5,7 +5,7 @@ import validate from 'utils/validate';
 import useValidate from 'hooks/useValidate';
 
 export const SignUpForm = () => {
-  const { values, handleChange } = useForm({
+  const { values, handleChange, resetForm } = useForm({
     email: '',
     nickname: '',
     password: '',
@@ -17,6 +17,8 @@ export const SignUpForm = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    resetForm();
+    console.log(values);
   };
 
   return (

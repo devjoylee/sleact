@@ -11,7 +11,9 @@ function useForm<T>(initialValues: T) {
     });
   };
 
-  return { values, handleChange };
+  const resetForm = () => setValues(initialValues);
+
+  return { values, handleChange, resetForm };
 }
 
 export default useForm;

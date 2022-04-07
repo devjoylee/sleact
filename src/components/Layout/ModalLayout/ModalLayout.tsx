@@ -6,7 +6,7 @@ interface Props {
   handleClose: () => void;
 }
 
-export const Modal: FC<Props> = ({ children, handleClose }) => {
+export const ModalLayout: FC<Props> = ({ children, handleClose }) => {
   return (
     <ModalOverlay className='modal-overlay' onClick={handleClose}>
       <div className='modal' onClick={(e) => e.stopPropagation()}>
