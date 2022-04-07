@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { DropdownOverlay, Dropdown } from './styles';
-import { MdClose } from 'react-icons/md';
 
 interface Props {
   handleClose: () => void;

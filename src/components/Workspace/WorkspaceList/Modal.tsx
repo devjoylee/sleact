@@ -3,12 +3,12 @@ import { ModalLayout } from 'components';
 import { Button, Input, Label } from 'components/Auth/styles';
 import useForm from 'hooks/useForm';
 
-interface AddWorkSpaceProp {
+interface ModalProp {
   toggleModal: () => void;
   setList: Dispatch<SetStateAction<string[]>>;
 }
 
-export const NewWorkspace = ({ toggleModal, setList }: AddWorkSpaceProp) => {
+export const Modal = ({ toggleModal, setList }: ModalProp) => {
   const { values, handleChange, resetForm } = useForm({
     wsname: '',
     wsurl: '',

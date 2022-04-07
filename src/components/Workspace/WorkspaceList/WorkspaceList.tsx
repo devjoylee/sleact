@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ListContainer, WspaceList } from './styles';
 import { MdAdd } from 'react-icons/md';
-import { NewWorkspace } from '../Modal/NewWorkspace';
+import { Modal } from './Modal';
 
 export const WorkspaceList = () => {
   const [list, setList] = useState(['모각코', 'English', '알고리즘']);
@@ -19,7 +19,7 @@ export const WorkspaceList = () => {
         ))}
       </WspaceList>
       <MdAdd onClick={toggleModal} />
-      {showModal && <NewWorkspace toggleModal={toggleModal} setList={setList} />}
+      {showModal && <Modal toggleModal={toggleModal} setList={setList} />}
     </ListContainer>
   );
 };
