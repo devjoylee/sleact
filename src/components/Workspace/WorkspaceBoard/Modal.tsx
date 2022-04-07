@@ -4,10 +4,11 @@ import { Button, Input, Label } from 'components/Auth/styles';
 import useForm from 'hooks/useForm';
 
 interface ModalProp {
-  toggleModal: () => void;
+  closeModal: () => void;
+  addChannel: (channel: string) => void;
 }
 
-export const Modal = ({ toggleModal }: ModalProp) => {
+export const Modal = ({ closeModal, addChannel }: ModalProp) => {
   const { values, handleChange, resetForm } = useForm({
     channel: '',
   });
@@ -15,13 +16,14 @@ export const Modal = ({ toggleModal }: ModalProp) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    addChannel(channel);
     resetForm();
-    toggleModal();
+    closeModal();
     console.log(values);
   };
 
   return (
-    <ModalLayout handleClose={toggleModal}>
+    <ModalLayout handleClose={closeModal}>
       <form onSubmit={handleSubmit}>
         <Label htmlFor='channel'>
           <span>채널명</span>

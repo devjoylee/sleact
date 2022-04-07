@@ -25,8 +25,20 @@ export const WorkspaceName = styled.h2`
   }
 `;
 
-export const List = styled.div`
+export const ListBoard = styled.div`
+  padding: 10px 15px;
   height: calc(100vh - 102px);
   overflow-y: auto;
   color: ${COLOR.TEXT_GRAY};
+  p {
+    margin-bottom: 7px;
+  }
+  ul {
+    padding-left: 15px;
+  }
+`;
+
+export const ChannelBoard = styled.div``;
+export const DMBoard = styled.div`
+  margin-top: 15px;
 `;

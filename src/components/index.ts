@@ -12,4 +12,4 @@ export { SignUpForm } from './Auth/SignUpForm';
 export { WorkspaceHeader } from './Workspace/WorkspaceHeader/WorkspaceHeader';
 export { UserDropdown } from './Workspace/WorkspaceHeader/UserDropdown';
 export { WorkspaceList } from './Workspace/WorkspaceList/WorkspaceList';
-export { ChannelList } from './Workspace/ChannelList/ChannelList';
+export { WorkspaceBoard } from './Workspace/WorkspaceBoard/WorkspaceBoard';

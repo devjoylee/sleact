@@ -14,8 +14,6 @@ export const reset = css`
     height: 100%;
   }
   body {
-    background: $black-primary;
-    color: $text-color;
     font-family: 'Roboto', sans-serif;
   }
   h1,
