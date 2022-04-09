@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { COLOR } from 'styles/variables';
 
-export const ListContainer = styled.nav`
+export const BoardContainer = styled.nav`
   width: 260px;
   display: inline-flex;
   flex-direction: column;
@@ -26,19 +26,32 @@ export const WorkspaceName = styled.h2`
 `;
 
 export const ListBoard = styled.div`
-  padding: 10px 15px;
+  padding: 10px 0;
   height: calc(100vh - 102px);
   overflow-y: auto;
   color: ${COLOR.TEXT_GRAY};
   p {
+    display: flex;
+    align-items: center;
     margin-bottom: 7px;
+    padding: 0 15px;
+    cursor: pointer;
+    svg {
+      margin-right: 5px;
+    }
   }
   ul {
-    padding-left: 15px;
+    li {
+      padding: 3px 20px;
+      cursor: pointer;
+      &:hover {
+        background: ${COLOR.MAIN_DARK};
+      }
+    }
   }
 `;
 
-export const ChannelBoard = styled.div``;
-export const DMBoard = styled.div`
+export const ChannelListContainer = styled.div``;
+export const DMListContainer = styled.div`
   margin-top: 15px;
 `;
