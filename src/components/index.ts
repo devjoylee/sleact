@@ -16,3 +16,6 @@ export { WorkspaceBoard } from './Workspace/WorkspaceBoard/WorkspaceBoard';
 
 // Channel
 export { ChannelHeader } from './Channel/ChannelHeader';
+
+// DM
+export { DMHeader } from './DM/DMHeader';

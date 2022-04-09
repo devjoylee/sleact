@@ -1,8 +1,6 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { DMHeader } from 'components';
 
 export const DMPage = () => {
-  const dm = useParams();
-
-  return <div>{dm.name}</div>;
+  return <DMHeader />;
 };
