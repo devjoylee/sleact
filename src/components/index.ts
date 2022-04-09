@@ -19,3 +19,6 @@ export { ChannelHeader } from './Channel/ChannelHeader';
 
 // DM
 export { DMHeader } from './DM/DMHeader';
+
+// Chat
+export { ChatBox } from './Chat/ChatBox/ChatBox';

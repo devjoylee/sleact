@@ -1,6 +1,11 @@
 import React from 'react';
-import { DMHeader } from 'components';
+import { ChatBox, DMHeader } from 'components';
 
 export const DMPage = () => {
-  return <DMHeader />;
+  return (
+    <>
+      <DMHeader />
+      <ChatBox />
+    </>
+  );
 };

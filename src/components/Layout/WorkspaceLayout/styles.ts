@@ -7,5 +7,8 @@ export const WorkspaceContents = styled.main`
 `;
 
 export const Chats = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   flex: 1;
 `;
