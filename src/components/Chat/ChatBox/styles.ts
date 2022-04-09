@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { COLOR } from 'styles/variables';
+import { COLOR, STYLE } from 'styles/variables';
 
 export const ChatBoxContainer = styled.div`
   display: flex;
@@ -14,18 +14,18 @@ export const Form = styled.form`
   border: 1px solid ${COLOR.TEXT_GRAY};
 `;
 
-export const ChatInput = styled.div`
-  font-family: Slack-Lato, appleLogo, sans-serif;
-  padding: 18px 20px;
-  textarea {
-    width: 100%;
-    height: 44px;
-    font-size: 15px;
-    line-height: 22px;
-    resize: none;
-    &::placeholder {
-      color: ${COLOR.TEXT_GRAY};
-    }
+export const ChatTextArea = styled.textarea`
+  display: block;
+  /* font-family: Slack-Lato, appleLogo, sans-serif; */
+  margin: 18px 20px;
+  width: 100%;
+  height: ${STYLE.CHAT_INPUT_HEIGHT};
+  font-size: 15px;
+  line-height: 22px;
+  resize: none;
+  overflow: hidden;
+  &::placeholder {
+    color: ${COLOR.TEXT_GRAY};
   }
 `;
 
