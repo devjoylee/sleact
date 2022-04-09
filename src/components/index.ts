@@ -13,3 +13,6 @@ export { WorkspaceHeader } from './Workspace/WorkspaceHeader/WorkspaceHeader';
 export { UserDropdown } from './Workspace/WorkspaceHeader/UserDropdown';
 export { WorkspaceList } from './Workspace/WorkspaceList/WorkspaceList';
 export { WorkspaceBoard } from './Workspace/WorkspaceBoard/WorkspaceBoard';
+
+// Channel
+export { ChannelHeader } from './Channel/ChannelHeader';

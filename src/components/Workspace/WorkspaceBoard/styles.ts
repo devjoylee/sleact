@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { COLOR } from 'styles/variables';
+import { COLOR, STYLE } from 'styles/variables';
 
 export const BoardContainer = styled.nav`
   width: 260px;
@@ -11,11 +11,11 @@ export const BoardContainer = styled.nav`
 `;
 
 export const WorkspaceName = styled.h2`
-  height: 64px;
-  line-height: 64px;
+  height: ${STYLE.WSNAME_HEIGHT};
+  line-height: ${STYLE.WSNAME_HEIGHT};
   padding-left: 16px;
   font-weight: 900;
-  font-size: 24px;
+  font-size: 22px;
   color: #fff;
   border-top: 1px solid ${COLOR.BORDER_PURPLE};
   border-bottom: 1px solid ${COLOR.BORDER_PURPLE};
@@ -42,10 +42,14 @@ export const ListBoard = styled.div`
   }
   ul {
     li {
-      padding: 3px 20px;
+      padding: 3px 0;
+      padding-left: 35px;
       cursor: pointer;
       &:hover {
         background: ${COLOR.MAIN_DARK};
+      }
+      &.active {
+        background: ${COLOR.FOCUS};
       }
     }
   }

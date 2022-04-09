@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
 import { ChannelListContainer } from './styles';
 import { BsCaretRightFill, BsCaretDownFill } from 'react-icons/bs';
+import { useNavigate, useParams } from 'react-router-dom';
 
 interface ListProp {
-  list: string[];
+  channels: string[];
 }
 
-export const ChannelList = ({ list }: ListProp) => {
+export const ChannelList = ({ channels }: ListProp) => {
   const [showItem, setShowItem] = useState(true);
+  const navigate = useNavigate();
+  const current = useParams();
+
+  const handleClick = (item: string) => {
+    navigate(`channel/${item}`);
+  };
+
   return (
     <ChannelListContainer>
       <p onClick={() => setShowItem((prev) => !prev)}>
@@ -16,8 +24,14 @@ export const ChannelList = ({ list }: ListProp) => {
       </p>
       {showItem && (
         <ul className='channel-list'>
-          {list.map((item, i) => (
-            <li key={i}># {item}</li>
+          {channels.map((item, i) => (
+            <li
+              key={i}
+              onClick={() => handleClick(item)}
+              className={item === current.name ? 'active' : ''}
+            >
+              # {item}
+            </li>
           ))}
         </ul>
       )}

@@ -5,11 +5,12 @@ import { Dropdown } from './Dropdown';
 import { BoardContainer, WorkspaceName, ListBoard } from './styles';
 
 export const WorkspaceBoard = () => {
-  const [list, setList] = useState(['001 채널', '002 채널', '003 채널']);
+  const [channels, setChannels] = useState(['일반', '새채널', '테스트채널']);
+  const [dm, setDM] = useState(['일반', '새채널', '테스트채널']);
   const [dropdown, setDropdown] = useState(false);
   const toggleDropdown = () => setDropdown((prev) => !prev);
   const addChannel = (channel: string) => {
-    setList((prev) => [...prev, channel]);
+    setChannels((prev) => [...prev, channel]);
   };
 
   return (
@@ -17,8 +18,8 @@ export const WorkspaceBoard = () => {
       <WorkspaceName onClick={toggleDropdown}>Slack 공부방</WorkspaceName>
       {dropdown && <Dropdown handleClose={toggleDropdown} addChannel={addChannel} />}
       <ListBoard>
-        <ChannelList list={list} />
-        <DMList list={list} />
+        <ChannelList channels={channels} />
+        <DMList />
       </ListBoard>
     </BoardContainer>
   );

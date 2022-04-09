@@ -11,4 +11,5 @@ export const COLOR = {
 
 export const STYLE = {
   WSHEADER_HEIGHT: '44px',
+  WSNAME_HEIGHT: '64px',
 };

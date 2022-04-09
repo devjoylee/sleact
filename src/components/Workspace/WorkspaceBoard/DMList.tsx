@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import { DMListContainer } from './styles';
 import { BsCaretRightFill, BsCaretDownFill } from 'react-icons/bs';
+import { useNavigate, useParams } from 'react-router-dom';
 
-interface ListProp {
-  list: string[];
-}
-
-export const DMList = ({ list }: ListProp) => {
+export const DMList = () => {
+  const [dm, setDM] = useState(['Joylee', 'ZeroCho', 'NomadCoder']);
   const [showItem, setShowItem] = useState(true);
+  const navigate = useNavigate();
+  const current = useParams();
+
+  const handleClick = (name: string) => {
+    navigate(`dm/${name}`);
+  };
 
   return (
     <DMListContainer>
@@ -17,8 +21,14 @@ export const DMList = ({ list }: ListProp) => {
       </p>
       {showItem && (
         <ul className='dm-list'>
-          {list.map((item, i) => (
-            <li key={i}>o {item}</li>
+          {dm.map((item, i) => (
+            <li
+              key={i}
+              onClick={() => handleClick(item)}
+              className={item === current.name ? 'active' : ''}
+            >
+              o {item}
+            </li>
           ))}
         </ul>
       )}
