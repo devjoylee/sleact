@@ -1,6 +1,14 @@
 import React, { useRef, useState } from 'react';
-import { ChatBoxContainer, ChatTextArea, Form, SendButton, Toolbox } from './styles';
+import {
+  ChatBoxContainer,
+  ChatTextArea,
+  Form,
+  ButtonContainer,
+  SendButton,
+  Toolbox,
+} from './styles';
 import { IoMdSend } from 'react-icons/io';
+import { GoChevronDown } from 'react-icons/go';
 import { useParams } from 'react-router-dom';
 import { STYLE } from 'styles/variables';
 
@@ -45,9 +53,14 @@ export const ChatBox = () => {
           ref={textAreaRef}
         />
         <Toolbox>
-          <SendButton type='submit'>
-            <IoMdSend />
-          </SendButton>
+          <ButtonContainer className={chat ? 'active' : ''}>
+            <SendButton type='submit' className='send-now'>
+              <IoMdSend />
+            </SendButton>
+            <SendButton className='send-later'>
+              <GoChevronDown />
+            </SendButton>
+          </ButtonContainer>
         </Toolbox>
       </Form>
     </ChatBoxContainer>

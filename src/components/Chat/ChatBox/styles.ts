@@ -39,12 +39,50 @@ export const Toolbox = styled.div`
   border-bottom-right-radius: 4px;
 `;
 
-export const SendButton = styled.button`
+export const ButtonContainer = styled.div`
+  display: flex;
   margin-left: auto;
-  margin-right: 15px;
+  margin-right: 7px;
+  border-radius: 4px;
+  padding: 5px 0;
+
+  &.active {
+    background: ${COLOR.ACTIVE_BUTTON};
+    svg {
+      color: #fff;
+    }
+    .send-later::before {
+      background: #fff;
+    }
+  }
+`;
+
+export const SendButton = styled.button`
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 7px;
+  position: relative;
   cursor: pointer;
+
   svg {
-    font-size: 18px;
+    font-size: 20px;
     color: ${COLOR.TEXT_GRAY};
+  }
+
+  &.send-later {
+    padding-left: 7px;
+    svg {
+      font-size: 13px;
+    }
+    &::before {
+      position: absolute;
+      content: '';
+      width: 1px;
+      height: 100%;
+      background-color: ${COLOR.TEXT_GRAY};
+      opacity: 0.5;
+      left: 0;
+    }
   }
 `;
