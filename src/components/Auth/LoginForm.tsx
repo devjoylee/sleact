@@ -1,10 +1,10 @@
 import React from 'react';
 import { Input, Label, Error, Button } from './styles';
-import useForm from 'hooks/useForm';
-import validate from 'utils/validate';
-import useValidate from 'hooks/useValidate';
+import { useForm, useValidate } from 'hooks';
+import { fetcher, validate } from 'utils';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import useSWR from 'swr';
 
 export const LoginForm = () => {
   const { values, handleChange, resetForm } = useForm({
@@ -12,6 +12,10 @@ export const LoginForm = () => {
     password: '',
   });
   const { errors, handleFormCheck } = useValidate(values, validate);
+  const { data } = useSWR('http://localhost:3095/api/users', fetcher, {
+    dedupingInterval: 100000,
+  });
+
   const { email, password } = values;
   const navigate = useNavigate();
 
@@ -21,7 +25,11 @@ export const LoginForm = () => {
       console.log('로그인 loading...');
 
       axios
-        .post('/api/users/login', { email, password })
+        .post(
+          'http://localhost:3095/api/users/login',
+          { email, password },
+          { withCredentials: true }
+        )
         .then((res) => {
           console.log(res);
           alert('로그인에 성공하였습니다.');

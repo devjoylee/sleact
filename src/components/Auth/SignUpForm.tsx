@@ -1,10 +1,9 @@
 import React from 'react';
 import { Input, Label, Error, Button } from './styles';
-import useForm from 'hooks/useForm';
-import validate from 'utils/validate';
-import useValidate from 'hooks/useValidate';
-import axios from 'axios';
+import { useForm, useValidate } from 'hooks';
+import { validate } from 'utils';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export const SignUpForm = () => {
   const { values, handleChange, resetForm } = useForm({
@@ -24,7 +23,7 @@ export const SignUpForm = () => {
       console.log('서버로 회원가입 loading...');
 
       axios
-        .post('/api/users', { email, nickname, password })
+        .post('http://localhost:3095/api/users', { email, nickname, password })
         .then((res) => {
           console.log(res);
           alert('회원가입에 성공하였습니다.');

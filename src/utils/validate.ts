@@ -1,6 +1,6 @@
 import { Auth } from 'types';
 
-export default function validate(values: Auth, type?: string) {
+export const validate = (values: Auth, type?: string) => {
   let errors = {} as Auth;
 
   // email
@@ -32,4 +32,4 @@ export default function validate(values: Auth, type?: string) {
   }
 
   return errors;
-}
+};
