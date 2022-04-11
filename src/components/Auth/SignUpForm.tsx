@@ -3,6 +3,8 @@ import { Input, Label, Error, Button } from './styles';
 import useForm from 'hooks/useForm';
 import validate from 'utils/validate';
 import useValidate from 'hooks/useValidate';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export const SignUpForm = () => {
   const { values, handleChange, resetForm } = useForm({
@@ -14,11 +16,26 @@ export const SignUpForm = () => {
 
   const { errors, handleFormCheck } = useValidate(values, validate, 'signup');
   const { email, nickname, password, passwordCheck } = values;
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    resetForm();
-    console.log(values);
+    if (!Object.keys(errors).length) {
+      console.log('서버로 회원가입 loading...');
+
+      axios
+        .post('/api/users', { email, nickname, password })
+        .then((res) => {
+          console.log(res);
+          alert('회원가입에 성공하였습니다.');
+          resetForm();
+          navigate('/login');
+        })
+        .catch((error) => {
+          console.log(error.response);
+          alert(error.response.data);
+        });
+    }
   };
 
   return (
