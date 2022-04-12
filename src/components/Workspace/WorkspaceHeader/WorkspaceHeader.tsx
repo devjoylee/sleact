@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { UserDropdown } from 'components';
 import { WspaceHeader, UserProfile } from './styles';
+import gravatar from 'gravatar';
+import useSWR from 'swr';
+import { fetcher } from 'utils';
 
 export const WorkspaceHeader = () => {
+  const { data } = useSWR('http://localhost:3095/api/users', fetcher);
   const [dropdown, setDropdown] = useState(false);
   const handleClick = () => {
     setDropdown((prev) => !prev);
@@ -11,10 +15,7 @@ export const WorkspaceHeader = () => {
   return (
     <WspaceHeader>
       <UserProfile onClick={handleClick}>
-        <img
-          src='https://s3-ap-northeast-1.amazonaws.com/ojuz-attach/profile/images/GioChkhaidze'
-          alt='profile'
-        />
+        <img src={gravatar.url(data.nickname, { s: '28px', d: 'retro' })} alt={data.nickname} />
       </UserProfile>
       {dropdown && <UserDropdown handleClose={handleClick} />}
     </WspaceHeader>

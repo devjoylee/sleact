@@ -5,6 +5,7 @@ import { DropdownLayout } from 'components';
 import useSWR from 'swr';
 import { fetcher } from 'utils';
 import axios from 'axios';
+import gravatar from 'gravatar';
 
 interface DropdownProp {
   handleClose: () => void;
@@ -28,10 +29,7 @@ export const UserDropdown = ({ handleClose }: DropdownProp) => {
   return (
     <DropdownLayout handleClose={handleClose} style={{ top: 40, right: 10 }}>
       <UserInfo>
-        <img
-          src='https://s3-ap-northeast-1.amazonaws.com/ojuz-attach/profile/images/GioChkhaidze'
-          alt='profile'
-        />
+        <img src={gravatar.url(data.nickname, { s: '28px', d: 'retro' })} alt={data.nickname} />
         <div>
           <p className='user-name'>Joy</p>
           <p className='user-active'>Active</p>
