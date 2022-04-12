@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Input, Label, Error, Button } from './styles';
 import { useForm, useValidate } from 'hooks';
-import { validate } from 'utils';
+import { fetcher, validate } from 'utils';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import useSWR from 'swr';
 
 export const SignUpForm = () => {
   const { values, handleChange, resetForm } = useForm({
@@ -15,6 +16,9 @@ export const SignUpForm = () => {
 
   const { errors, handleFormCheck } = useValidate(values, validate, 'signup');
   const { email, nickname, password, passwordCheck } = values;
+
+  const { data } = useSWR('http://localhost:3095/api/users', fetcher);
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -36,6 +40,10 @@ export const SignUpForm = () => {
         });
     }
   };
+
+  useEffect(() => {
+    if (data) navigate('/workspace');
+  }, [data, navigate]);
 
   return (
     <form onSubmit={handleSubmit}>

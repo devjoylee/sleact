@@ -2,14 +2,28 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserInfo } from './styles';
 import { DropdownLayout } from 'components';
+import useSWR from 'swr';
+import { fetcher } from 'utils';
+import axios from 'axios';
 
 interface DropdownProp {
   handleClose: () => void;
 }
 
 export const UserDropdown = ({ handleClose }: DropdownProp) => {
+  const { data, mutate } = useSWR('http://localhost:3095/api/users', fetcher);
+
   const navigate = useNavigate();
-  const handleLogout = () => navigate('/login');
+  const handleLogout = () => {
+    axios
+      .post('http://localhost:3095/api/users/logout', null, {
+        withCredentials: true,
+      })
+      .then(() => {
+        mutate(false, false);
+        navigate('/login');
+      });
+  };
 
   return (
     <DropdownLayout handleClose={handleClose} style={{ top: 40, right: 10 }}>

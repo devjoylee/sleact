@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Input, Label, Error, Button } from './styles';
 import { useForm, useValidate } from 'hooks';
 import { fetcher, validate } from 'utils';
@@ -11,12 +11,14 @@ export const LoginForm = () => {
     email: '',
     password: '',
   });
+
   const { errors, handleFormCheck } = useValidate(values, validate);
-  const { data } = useSWR('http://localhost:3095/api/users', fetcher, {
-    dedupingInterval: 100000,
+  const { email, password } = values;
+
+  const { data, mutate } = useSWR('http://localhost:3095/api/users', fetcher, {
+    dedupingInterval: 100000, // get data from cashe
   });
 
-  const { email, password } = values;
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -33,8 +35,8 @@ export const LoginForm = () => {
         .then((res) => {
           console.log(res);
           alert('로그인에 성공하였습니다.');
+          mutate(res.data, false);
           resetForm();
-          navigate('/workspace');
         })
         .catch((error) => {
           console.log(error.response);
@@ -42,6 +44,10 @@ export const LoginForm = () => {
         });
     }
   };
+
+  useEffect(() => {
+    if (data) navigate('/workspace');
+  }, [data, navigate]);
 
   return (
     <form onSubmit={handleSubmit}>
