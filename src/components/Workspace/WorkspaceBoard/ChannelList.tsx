@@ -13,7 +13,7 @@ export const ChannelList = () => {
   const navigate = useNavigate();
 
   const { data: channelList } = useSWR<IChannel[]>(
-    `http://localhost:3095/api/workspaces/${workspace}/channels`,
+    `/api/workspaces/${workspace}/channels`,
     fetcher
   );
 

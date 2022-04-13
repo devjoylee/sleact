@@ -3,17 +3,21 @@ import { ModalLayout } from 'components';
 import { Button, Input, Label } from 'components/Auth/styles';
 import useForm from 'hooks/useForm';
 import axios from 'axios';
+import useSWR from 'swr';
+import { fetcher } from 'utils';
 
 interface ModalProp {
-  toggleModal: () => void;
+  closeModal: () => void;
 }
 
-export const Modal = ({ toggleModal }: ModalProp) => {
+export const Modal = ({ closeModal }: ModalProp) => {
   const { values, handleChange, resetForm } = useForm({
     wsname: '',
     wsurl: '',
   });
   const { wsname, wsurl } = values;
+
+  const { mutate } = useSWR('/api/users', fetcher);
 
   const createWorkspace = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -22,7 +26,7 @@ export const Modal = ({ toggleModal }: ModalProp) => {
 
     axios
       .post(
-        'http://localhost:3095/api/workspaces',
+        '/api/workspaces',
         {
           workspace: wsname,
           url: wsurl,
@@ -30,14 +34,14 @@ export const Modal = ({ toggleModal }: ModalProp) => {
         { withCredentials: true }
       )
       .then(() => {
-        toggleModal();
+        mutate();
         resetForm();
-        console.log(values);
+        closeModal();
       });
   };
 
   return (
-    <ModalLayout handleClose={toggleModal}>
+    <ModalLayout handleClose={closeModal}>
       <form onSubmit={createWorkspace}>
         <Label htmlFor='wsname'>
           <span>워크스페이스 이름</span>

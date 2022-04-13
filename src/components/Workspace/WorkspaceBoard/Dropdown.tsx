@@ -11,7 +11,7 @@ interface DropdownProp {
 }
 
 export const Dropdown = ({ handleClose }: DropdownProp) => {
-  const { mutate } = useSWR('http://localhost:3095/api/users', fetcher);
+  const { mutate } = useSWR('/api/users', fetcher);
   const [showModal, setShowModal] = useState(false);
 
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ export const Dropdown = ({ handleClose }: DropdownProp) => {
 
   const handleLogout = () => {
     axios
-      .post('http://localhost:3095/api/users/logout', null, {
+      .post('/api/users/logout', null, {
         withCredentials: true,
       })
       .then(() => {

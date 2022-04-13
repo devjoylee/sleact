@@ -8,10 +8,9 @@ import { IUser } from 'types';
 
 export const WorkspaceList = () => {
   const [showModal, setShowModal] = useState(false);
-  const { data: userData } = useSWR<IUser>('http://localhost:3095/api/users', fetcher);
+  const { data: userData } = useSWR<IUser>('/api/users', fetcher);
 
   const toggleModal = () => setShowModal((prev) => !prev);
-  // console.log(userData);
 
   return (
     <ListContainer>
@@ -23,7 +22,7 @@ export const WorkspaceList = () => {
         ))}
       </WspaceList>
       <MdAdd onClick={toggleModal} />
-      {showModal && <Modal toggleModal={toggleModal} />}
+      {showModal && <Modal closeModal={toggleModal} />}
     </ListContainer>
   );
 };

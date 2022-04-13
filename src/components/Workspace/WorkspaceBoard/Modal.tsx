@@ -18,22 +18,17 @@ export const Modal = ({ closeModal }: ModalProp) => {
   const { channel } = values;
   const { workspace } = useParams<{ workspace: string; name: string }>();
 
-  // const { mutate } = useSWR(`http://localhost:3095/api/workspaces/${workspace}/channels`, fetcher);
+  const { mutate } = useSWR(`/api/workspaces/${workspace}/channels`, fetcher);
 
   const createChannel = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     axios
-      .post(
-        `http://localhost:3095/api/workspaces/${workspace}/channels`,
-        { name: channel },
-        { withCredentials: true }
-      )
-      .then((res) => {
-        // mutate(res.data, false);
+      .post(`/api/workspaces/${workspace}/channels`, { name: channel }, { withCredentials: true })
+      .then(() => {
+        mutate();
         resetForm();
         closeModal();
-        console.log(values);
       });
   };
 

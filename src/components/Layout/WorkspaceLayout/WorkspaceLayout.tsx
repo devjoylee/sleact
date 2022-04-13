@@ -6,7 +6,7 @@ import useSWR from 'swr';
 import { fetcher } from 'utils';
 
 export const WorkspaceLayout = () => {
-  const { data } = useSWR('http://localhost:3095/api/users', fetcher);
+  const { data } = useSWR('/api/users', fetcher);
   const navigate = useNavigate();
 
   useEffect(() => {

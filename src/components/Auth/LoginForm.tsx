@@ -15,7 +15,7 @@ export const LoginForm = () => {
   const { errors, handleFormCheck } = useValidate(values, validate);
   const { email, password } = values;
 
-  const { data, mutate } = useSWR('http://localhost:3095/api/users', fetcher, {
+  const { data, mutate } = useSWR('/api/users', fetcher, {
     dedupingInterval: 100000, // get data from cashe
   });
 
@@ -27,11 +27,7 @@ export const LoginForm = () => {
       console.log('로그인 loading...');
 
       axios
-        .post(
-          'http://localhost:3095/api/users/login',
-          { email, password },
-          { withCredentials: true }
-        )
+        .post('/api/users/login', { email, password }, { withCredentials: true })
         .then((res) => {
           console.log(res);
           alert('로그인에 성공하였습니다.');

@@ -12,12 +12,12 @@ interface DropdownProp {
 }
 
 export const UserDropdown = ({ handleClose }: DropdownProp) => {
-  const { data, mutate } = useSWR('http://localhost:3095/api/users', fetcher);
+  const { data, mutate } = useSWR('/api/users', fetcher);
 
   const navigate = useNavigate();
   const handleLogout = () => {
     axios
-      .post('http://localhost:3095/api/users/logout', null, {
+      .post('/api/users/logout', null, {
         withCredentials: true,
       })
       .then(() => {

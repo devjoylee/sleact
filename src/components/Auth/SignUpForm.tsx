@@ -17,7 +17,7 @@ export const SignUpForm = () => {
   const { errors, handleFormCheck } = useValidate(values, validate, 'signup');
   const { email, nickname, password, passwordCheck } = values;
 
-  const { data } = useSWR('http://localhost:3095/api/users', fetcher);
+  const { data } = useSWR('/api/users', fetcher);
 
   const navigate = useNavigate();
 
@@ -27,7 +27,7 @@ export const SignUpForm = () => {
       console.log('서버로 회원가입 loading...');
 
       axios
-        .post('http://localhost:3095/api/users', { email, nickname, password })
+        .post('/api/users', { email, nickname, password })
         .then((res) => {
           console.log(res);
           alert('회원가입에 성공하였습니다.');
