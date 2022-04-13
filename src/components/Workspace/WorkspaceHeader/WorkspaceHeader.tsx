@@ -15,7 +15,9 @@ export const WorkspaceHeader = () => {
   return (
     <WspaceHeader>
       <UserProfile onClick={handleClick}>
-        <img src={gravatar.url(data.nickname, { s: '28px', d: 'retro' })} alt={data.nickname} />
+        {data && (
+          <img src={gravatar.url(data.nickname, { s: '28px', d: 'retro' })} alt={data.nickname} />
+        )}
       </UserProfile>
       {dropdown && <UserDropdown handleClose={handleClick} />}
     </WspaceHeader>

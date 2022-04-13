@@ -2,18 +2,23 @@ import React, { useState } from 'react';
 import { ChannelListContainer } from './styles';
 import { BsCaretRightFill, BsCaretDownFill } from 'react-icons/bs';
 import { useNavigate, useParams } from 'react-router-dom';
+import { fetcher } from 'utils';
+import useSWR from 'swr';
+import { IChannel } from 'types';
 
-interface ListProp {
-  channels: string[];
-}
-
-export const ChannelList = ({ channels }: ListProp) => {
+export const ChannelList = () => {
   const [showItem, setShowItem] = useState(true);
-  const navigate = useNavigate();
-  const current = useParams();
 
-  const handleClick = (item: string) => {
-    navigate(`channel/${item}`);
+  const { workspace, name } = useParams();
+  const navigate = useNavigate();
+
+  const { data: channelList } = useSWR<IChannel[]>(
+    `http://localhost:3095/api/workspaces/${workspace}/channels`,
+    fetcher
+  );
+
+  const handleClick = (name: string) => {
+    navigate(`channel/${name}`);
   };
 
   return (
@@ -24,13 +29,13 @@ export const ChannelList = ({ channels }: ListProp) => {
       </p>
       {showItem && (
         <ul className='channel-list'>
-          {channels.map((item, i) => (
+          {channelList?.map((channel, i) => (
             <li
               key={i}
-              onClick={() => handleClick(item)}
-              className={item === current.name ? 'active' : ''}
+              onClick={() => handleClick(channel.name)}
+              className={channel.name === name ? 'active' : ''}
             >
-              # {item}
+              # {channel.name}
             </li>
           ))}
         </ul>

@@ -46,7 +46,7 @@ export const LoginForm = () => {
   };
 
   useEffect(() => {
-    if (data) navigate('/workspace');
+    if (data) navigate('/workspace/sleact/channel/일반');
   }, [data, navigate]);
 
   return (

@@ -2,24 +2,28 @@ import React, { useState } from 'react';
 import { ListContainer, WspaceList } from './styles';
 import { MdAdd } from 'react-icons/md';
 import { Modal } from './Modal';
+import useSWR from 'swr';
+import { fetcher } from 'utils';
+import { IUser } from 'types';
 
 export const WorkspaceList = () => {
-  const [list, setList] = useState(['모각코', 'English', '알고리즘']);
   const [showModal, setShowModal] = useState(false);
+  const { data: userData } = useSWR<IUser>('http://localhost:3095/api/users', fetcher);
 
   const toggleModal = () => setShowModal((prev) => !prev);
+  // console.log(userData);
 
   return (
     <ListContainer>
       <WspaceList>
-        {list.map((item, i) => (
+        {userData?.Workspaces?.map((workspace, i) => (
           <li key={i} className='wspace-item'>
-            {item.slice(0, 1)}
+            {workspace.name.slice(0, 1).toUpperCase()}
           </li>
         ))}
       </WspaceList>
       <MdAdd onClick={toggleModal} />
-      {showModal && <Modal toggleModal={toggleModal} setList={setList} />}
+      {showModal && <Modal toggleModal={toggleModal} />}
     </ListContainer>
   );
 };

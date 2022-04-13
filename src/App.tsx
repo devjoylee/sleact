@@ -13,7 +13,7 @@ const App = () => {
         <Route path='/' element={<Navigate replace to='/login' />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/signup' element={<SignUpPage />} />
-        <Route path='/workspace' element={<WorkspaceLayout />}>
+        <Route path='/workspace/:workspace' element={<WorkspaceLayout />}>
           <Route path='channel/:name' element={<ChannelPage />} />
           <Route path='dm/:name' element={<DMPage />} />
         </Route>
