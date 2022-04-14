@@ -10,7 +10,7 @@ interface ModalProp {
   closeModal: () => void;
 }
 
-export const Modal = ({ closeModal }: ModalProp) => {
+export const NewWorkspaceModal = ({ closeModal }: ModalProp) => {
   const { values, handleChange, resetForm } = useForm({
     wsname: '',
     wsurl: '',

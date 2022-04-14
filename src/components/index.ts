@@ -14,6 +14,10 @@ export { UserDropdown } from './Workspace/WorkspaceHeader/UserDropdown';
 export { WorkspaceList } from './Workspace/WorkspaceList/WorkspaceList';
 export { WorkspaceBoard } from './Workspace/WorkspaceBoard/WorkspaceBoard';
 
+export { NewMemberModal } from './Workspace/Modal/NewMemberModal';
+export { NewChannelModal } from './Workspace/Modal/NewChannelModal';
+export { NewWorkspaceModal } from './Workspace/Modal/NewWorkspaceModal';
+
 // Channel
 export { ChannelHeader } from './Channel/ChannelHeader';
 

@@ -11,7 +11,7 @@ interface ModalProp {
   closeModal: () => void;
 }
 
-export const Modal = ({ closeModal }: ModalProp) => {
+export const NewChannelModal = ({ closeModal }: ModalProp) => {
   const { values, handleChange, resetForm } = useForm({
     channel: '',
   });

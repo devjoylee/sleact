@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { ListContainer, WspaceList } from './styles';
 import { MdAdd } from 'react-icons/md';
-import { Modal } from './Modal';
+import { NewWorkspaceModal } from 'components';
 import useSWR from 'swr';
 import { fetcher } from 'utils';
 import { IUser } from 'types';
 
 export const WorkspaceList = () => {
-  const [showModal, setShowModal] = useState(false);
+  const [newWorkspace, setNewWorkspace] = useState(false);
   const { data: userData } = useSWR<IUser>('/api/users', fetcher);
 
-  const toggleModal = () => setShowModal((prev) => !prev);
+  const toggleModal = () => setNewWorkspace((prev) => !prev);
 
   return (
     <ListContainer>
@@ -22,7 +22,7 @@ export const WorkspaceList = () => {
         ))}
       </WspaceList>
       <MdAdd onClick={toggleModal} />
-      {showModal && <Modal closeModal={toggleModal} />}
+      {newWorkspace && <NewWorkspaceModal closeModal={toggleModal} />}
     </ListContainer>
   );
 };

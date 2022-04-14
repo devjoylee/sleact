@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { DropdownLayout } from 'components';
-import { Modal } from './Modal';
+import { DropdownLayout, NewChannelModal, NewMemberModal } from 'components';
 import useSWR from 'swr';
 import { fetcher } from 'utils';
 import axios from 'axios';
@@ -12,13 +11,13 @@ interface DropdownProp {
 
 export const Dropdown = ({ handleClose }: DropdownProp) => {
   const { mutate } = useSWR('/api/users', fetcher);
-  const [showModal, setShowModal] = useState(false);
+  const [newMember, setNewMember] = useState(false);
+  const [newChannel, setNewChannel] = useState(false);
 
   const navigate = useNavigate();
 
-  const toggleModal = () => {
-    setShowModal((prev) => !prev);
-  };
+  const handleNewMemberModal = () => setNewMember((prev) => !prev);
+  const handleNewChannelModal = () => setNewChannel((prev) => !prev);
 
   const handleLogout = () => {
     axios
@@ -34,9 +33,11 @@ export const Dropdown = ({ handleClose }: DropdownProp) => {
   return (
     <>
       <DropdownLayout handleClose={handleClose} style={{ top: 55, left: 10 }}>
-        <li onClick={toggleModal}>채널 만들기</li>
+        <li onClick={handleNewChannelModal}>채널 만들기</li>
+        <li onClick={handleNewMemberModal}>워크스페이스에 사용자 초대</li>
         <li onClick={handleLogout}>로그아웃</li>
-        {showModal && <Modal closeModal={toggleModal} />}
+        {newMember && <NewMemberModal closeModal={handleNewMemberModal} />}
+        {newChannel && <NewChannelModal closeModal={handleNewChannelModal} />}
       </DropdownLayout>
     </>
   );
