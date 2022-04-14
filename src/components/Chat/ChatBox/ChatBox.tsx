@@ -15,7 +15,7 @@ import { STYLE } from 'styles/variables';
 export const ChatBox = () => {
   const [chat, setChat] = useState('');
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
-  const current = useParams();
+  const { name } = useParams();
 
   const handleSubmit = (
     e: React.FormEvent<HTMLFormElement> | React.KeyboardEvent<HTMLTextAreaElement>
@@ -49,7 +49,7 @@ export const ChatBox = () => {
           value={chat}
           onKeyDown={handleEnter}
           onChange={handleChange}
-          placeholder={`${current.name}에 메세지 보내기`}
+          placeholder={`${name}에 메세지 보내기`}
           ref={textAreaRef}
         />
         <Toolbox>

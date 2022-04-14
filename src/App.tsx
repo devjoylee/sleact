@@ -15,7 +15,7 @@ const App = () => {
         <Route path='/signup' element={<SignUpPage />} />
         <Route path='/workspace/:workspace' element={<WorkspaceLayout />}>
           <Route path='channel/:name' element={<ChannelPage />} />
-          <Route path='dm/:name' element={<DMPage />} />
+          <Route path='dm/:id' element={<DMPage />} />
         </Route>
       </Routes>
     </>

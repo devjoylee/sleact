@@ -8,8 +8,7 @@ import { IChannel } from 'types';
 
 export const ChannelList = () => {
   const [showItem, setShowItem] = useState(true);
-
-  const { workspace, name } = useParams();
+  const { workspace, name: channelName } = useParams();
   const navigate = useNavigate();
 
   const { data: channelList } = useSWR<IChannel[]>(
@@ -29,11 +28,11 @@ export const ChannelList = () => {
       </p>
       {showItem && (
         <ul className='channel-list'>
-          {channelList?.map((channel, i) => (
+          {channelList?.map((channel) => (
             <li
-              key={i}
+              key={channel.id}
               onClick={() => handleClick(channel.name)}
-              className={channel.name === name ? 'active' : ''}
+              className={channel.name === channelName ? 'active' : ''}
             >
               # {channel.name}
             </li>

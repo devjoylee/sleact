@@ -13,16 +13,11 @@ export { WorkspaceHeader } from './Workspace/WorkspaceHeader/WorkspaceHeader';
 export { UserDropdown } from './Workspace/WorkspaceHeader/UserDropdown';
 export { WorkspaceList } from './Workspace/WorkspaceList/WorkspaceList';
 export { WorkspaceBoard } from './Workspace/WorkspaceBoard/WorkspaceBoard';
-
 export { NewMemberModal } from './Workspace/Modal/NewMemberModal';
 export { NewChannelModal } from './Workspace/Modal/NewChannelModal';
 export { NewWorkspaceModal } from './Workspace/Modal/NewWorkspaceModal';
 
-// Channel
-export { ChannelHeader } from './Channel/ChannelHeader';
-
-// DM
-export { DMHeader } from './DM/DMHeader';
-
 // Chat
+export { ChannelHeader } from './Chat/ChatHeader/ChannelHeader';
+export { DMHeader } from './Chat/ChatHeader/DMHeader';
 export { ChatBox } from './Chat/ChatBox/ChatBox';
