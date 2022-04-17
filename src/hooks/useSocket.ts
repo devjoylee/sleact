@@ -1,20 +1,36 @@
-import { io } from 'socket.io-client';
+import { io, Socket } from 'socket.io-client';
 
 const backUrl = 'http://localhost:3095';
+const sockets: { [key: string]: Socket } = {};
 
-function useSocket(workspace?: string) {
-  if (!workspace) return;
+function useSocket(workspace?: string): [Socket | undefined, () => void] {
+  console.log('Socket rerender');
 
-  const socket = io(`${backUrl}/ws-${workspace}`);
-  // emit :  client -> server
-  // on : server -> client
-  // disconnect : client에서 소켓 연결을 종료
+  const disconnect = () => {
+    if (workspace) {
+      sockets[workspace].disconnect();
+      delete sockets[workspace];
+    }
+  };
 
-  socket.emit('login', 'hello');
-  socket.on('message', (data) => {
-    console.log(data);
-  });
-  socket.disconnect();
+  if (!workspace) return [undefined, disconnect];
+
+  if (!sockets[workspace]) {
+    sockets[workspace] = io(`${backUrl}/ws-${workspace}`, {
+      transports: ['websocket'],
+    });
+  }
+
+  // sockets[workspace].emit('login', 'hello');
+  // sockets[workspace].on('message', (data) => {
+  //   console.log(data);
+  // });
+
+  return [sockets[workspace], disconnect];
 }
+
+// emit :  client -> server
+// on : server -> client
+// disconnect : client에서 소켓 연결을 종료
 
 export default useSocket;
