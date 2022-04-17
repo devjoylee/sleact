@@ -56,6 +56,21 @@ export const ListBoard = styled.div`
 `;
 
 export const ChannelListContainer = styled.div``;
+
 export const DMListContainer = styled.div`
   margin-top: 15px;
+
+  .user-state i {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: 1px solid ${COLOR.TEXT_GRAY};
+    margin-bottom: 1px;
+
+    &.online {
+      border-color: ${COLOR.ACTIVE};
+      background-color: ${COLOR.ACTIVE};
+    }
+  }
 `;

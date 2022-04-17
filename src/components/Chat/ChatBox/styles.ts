@@ -47,7 +47,7 @@ export const ButtonContainer = styled.div`
   padding: 5px 0;
 
   &.active {
-    background: ${COLOR.ACTIVE_BUTTON};
+    background: ${COLOR.ACTIVE};
     svg {
       color: #fff;
     }

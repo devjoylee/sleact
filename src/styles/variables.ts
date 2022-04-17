@@ -7,7 +7,7 @@ export const COLOR = {
   BORDER_GRAY: '#e1e1e1',
   MODAL_BG: '#f8f8f8',
   FOCUS: '#1164A3',
-  ACTIVE_BUTTON: '#007a5a',
+  ACTIVE: '#007a5a',
 };
 
 export const STYLE = {
