@@ -24,12 +24,9 @@ export const LoginForm = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!Object.keys(errors).length) {
-      console.log('로그인 loading...');
-
       axios
         .post('/api/users/login', { email, password }, { withCredentials: true })
         .then((res) => {
-          console.log(res);
           alert('로그인에 성공하였습니다.');
           mutate(res.data, false);
           resetForm();

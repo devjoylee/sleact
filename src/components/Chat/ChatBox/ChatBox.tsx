@@ -12,17 +12,17 @@ import { GoChevronDown } from 'react-icons/go';
 import { useParams } from 'react-router-dom';
 import { STYLE } from 'styles/variables';
 
-export const ChatBox = () => {
+interface ChatBoxProps {
+  handleSubmit: (
+    e: React.FormEvent<HTMLFormElement> | React.KeyboardEvent<HTMLTextAreaElement>
+  ) => void;
+}
+
+export const ChatBox = ({ handleSubmit }: ChatBoxProps) => {
   const [chat, setChat] = useState('');
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const { name } = useParams();
 
-  const handleSubmit = (
-    e: React.FormEvent<HTMLFormElement> | React.KeyboardEvent<HTMLTextAreaElement>
-  ) => {
-    e.preventDefault();
-    console.log('submit', chat);
-  };
   const handleEnter = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter') {
       if (!e.shiftKey) {
