@@ -9,25 +9,40 @@ import {
 } from './styles';
 import { IoMdSend } from 'react-icons/io';
 import { GoChevronDown } from 'react-icons/go';
-import { useParams } from 'react-router-dom';
 import { STYLE } from 'styles/variables';
+import axios from 'axios';
 
 interface ChatBoxProps {
-  handleSubmit: (
-    e: React.FormEvent<HTMLFormElement> | React.KeyboardEvent<HTMLTextAreaElement>
-  ) => void;
+  url: string;
+  name: string | undefined;
 }
 
-export const ChatBox = ({ handleSubmit }: ChatBoxProps) => {
+export const ChatBox = ({ url, name }: ChatBoxProps) => {
   const [chat, setChat] = useState('');
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
-  const { name } = useParams();
+
+  const handleSubmit = (
+    e: React.FormEvent<HTMLFormElement> | React.KeyboardEvent<HTMLTextAreaElement>
+  ) => {
+    e.preventDefault();
+
+    // 서버에 채팅 text 보내기
+    if (chat?.trim()) {
+      axios
+        .post(url, {
+          content: chat,
+        })
+        .then(() => {
+          setChat('');
+        })
+        .catch(console.error);
+    }
+  };
 
   const handleEnter = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter') {
       if (!e.shiftKey) {
         handleSubmit(e);
-        setChat('');
         if (textAreaRef.current) {
           textAreaRef.current.style.height = `${STYLE.CHAT_INPUT_HEIGHT}`;
         }

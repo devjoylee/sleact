@@ -1,18 +1,21 @@
+import React from 'react';
 import { ChannelHeader, ChatBox } from 'components';
-import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import useSWR from 'swr';
+import { IChat } from 'types';
+import { fetcher } from 'utils';
 
 export const ChannelPage = () => {
-  const [chat, setChat] = useState('');
-  const handleSubmit = (
-    e: React.FormEvent<HTMLFormElement> | React.KeyboardEvent<HTMLTextAreaElement>
-  ) => {
-    e.preventDefault();
-  };
+  const { workspace, name } = useParams();
+  const postURL = `/api/workspaces/${workspace}/channels/${name}/chats`;
+  const { data: chats } = useSWR<IChat[]>(`${postURL}?perPage=20&page=1`, fetcher);
+
+  console.log(chats);
 
   return (
     <>
       <ChannelHeader />
-      <ChatBox handleSubmit={handleSubmit} />
+      <ChatBox url={postURL} name={name} />
     </>
   );
 };

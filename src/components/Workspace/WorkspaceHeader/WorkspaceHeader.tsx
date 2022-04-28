@@ -6,7 +6,7 @@ import useSWR from 'swr';
 import { fetcher } from 'utils';
 
 export const WorkspaceHeader = () => {
-  const { data } = useSWR('/api/users', fetcher);
+  const { data: user } = useSWR('/api/users', fetcher);
   const [dropdown, setDropdown] = useState(false);
   const handleClick = () => {
     setDropdown((prev) => !prev);
@@ -15,8 +15,8 @@ export const WorkspaceHeader = () => {
   return (
     <WspaceHeader>
       <UserProfile onClick={handleClick}>
-        {data && (
-          <img src={gravatar.url(data.nickname, { s: '28px', d: 'retro' })} alt={data.nickname} />
+        {user && (
+          <img src={gravatar.url(user.email, { s: '28px', d: 'retro' })} alt={user.nickname} />
         )}
       </UserProfile>
       {dropdown && <UserDropdown handleClose={handleClick} />}

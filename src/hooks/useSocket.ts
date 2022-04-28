@@ -17,14 +17,9 @@ function useSocket(workspace?: string): [Socket | undefined, () => void] {
 
   if (!sockets[workspace]) {
     sockets[workspace] = io(`${backUrl}/ws-${workspace}`, {
-      transports: ['websocket'],
+      transports: ['websocket'], // without polling http
     });
   }
-
-  // sockets[workspace].emit('login', 'hello');
-  // sockets[workspace].on('message', (data) => {
-  //   console.log(data);
-  // });
 
   return [sockets[workspace], disconnect];
 }

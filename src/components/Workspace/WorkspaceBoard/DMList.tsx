@@ -4,21 +4,22 @@ import { BsCaretRightFill, BsCaretDownFill } from 'react-icons/bs';
 import { useNavigate, useParams } from 'react-router-dom';
 import { fetcher } from 'utils';
 import useSWR from 'swr';
-import { IUserWithOnline } from 'types';
+import { IUser, IUserWithOnline } from 'types';
 import { useSocket } from 'hooks';
 
 export const DMList = () => {
-  const [showItem, setShowItem] = useState(true);
-  const [onlineList, setOnlineList] = useState<number[]>([]);
-
   const { workspace, id } = useParams();
-  const [socket] = useSocket(workspace);
-  const navigate = useNavigate();
-
-  const { data: memberList } = useSWR<IUserWithOnline[]>(
+  const { data: userData } = useSWR<IUser>('/api/users', fetcher);
+  const { data: memberData } = useSWR<IUserWithOnline[]>(
     `/api/workspaces/${workspace}/members`,
     fetcher
   );
+
+  const [showItem, setShowItem] = useState(true);
+  const [onlineList, setOnlineList] = useState<number[]>([]);
+
+  const [socket] = useSocket(workspace);
+  const navigate = useNavigate();
 
   const handleClick = (id: number) => {
     navigate(`dm/${id}`);
@@ -32,9 +33,12 @@ export const DMList = () => {
   }, [workspace]);
 
   useEffect(() => {
+    // online 접속중인 유저값 불러오기
     socket?.on('onlineList', (data: number[]) => {
       setOnlineList(data);
+      console.log(data);
     });
+
     return () => {
       socket?.off('onlineList');
     };
@@ -48,13 +52,15 @@ export const DMList = () => {
       </p>
       {showItem && (
         <ul className='dm-list'>
-          {memberList?.map((member) => (
+          {memberData?.map((member) => (
             <li
               key={member.id}
               onClick={() => handleClick(member.id)}
               className={`user-state ${member.id === Number(id) ? 'active' : ''}`}
             >
-              <i className={isOnline(member.id) ? 'online' : 'offline'}></i> {member.nickname}
+              <i className={isOnline(member.id) ? 'online' : 'offline'}></i>
+              <span>{member.nickname}</span>
+              {member.id === userData?.id && <span> (나)</span>}
             </li>
           ))}
         </ul>
