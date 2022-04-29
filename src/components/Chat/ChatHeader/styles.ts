@@ -6,6 +6,7 @@ export const HeaderContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   height: ${STYLE.WSNAME_HEIGHT};
+  min-height: ${STYLE.WSNAME_HEIGHT};
   padding: 0 23px;
   box-shadow: 0px 0px 4px 0px rgb(0 0 0 / 10%);
   font-size: 20px;

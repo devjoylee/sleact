@@ -8,11 +8,6 @@ export const reset = css`
     padding: 0;
     box-sizing: border-box;
   }
-  html,
-  body,
-  body > div {
-    height: 100%;
-  }
   body {
     font-family: 'Roboto', sans-serif;
   }

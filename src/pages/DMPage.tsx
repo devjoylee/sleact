@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChatBox, DMHeader } from 'components';
+import { ChatBox, ChatList, DMHeader } from 'components';
 import { useParams } from 'react-router-dom';
 import useSWR from 'swr';
 import { IDM, IUser } from 'types';
@@ -16,6 +16,7 @@ export const DMPage = () => {
   return (
     <>
       <DMHeader member={member} />
+      <ChatList chats={chats} />
       <ChatBox url={postURL} name={member?.nickname} />
     </>
   );
