@@ -12,7 +12,7 @@ interface DropdownProp {
 }
 
 export const UserDropdown = ({ handleClose }: DropdownProp) => {
-  const { data, mutate } = useSWR('/api/users', fetcher);
+  const { data: user, mutate } = useSWR('/api/users', fetcher);
 
   const navigate = useNavigate();
   const handleLogout = () => {
@@ -29,7 +29,7 @@ export const UserDropdown = ({ handleClose }: DropdownProp) => {
   return (
     <DropdownLayout handleClose={handleClose} style={{ top: 40, right: 10 }}>
       <UserInfo>
-        <img src={gravatar.url(data.nickname, { s: '28px', d: 'retro' })} alt={data.nickname} />
+        <img src={gravatar.url(user.email, { s: '28px', d: 'retro' })} alt={user.nickname} />
         <div>
           <p className='user-name'>Joy</p>
           <p className='user-active'>Active</p>

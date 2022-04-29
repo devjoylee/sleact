@@ -5,8 +5,7 @@ export const ChatBoxContainer = styled.div`
   display: flex;
   width: 100%;
   padding: 20px;
-  padding-top: 0;
-  margin-top: auto;
+  padding-top: 5px;
 `;
 
 export const Form = styled.form`

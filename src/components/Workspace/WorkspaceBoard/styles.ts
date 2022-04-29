@@ -67,6 +67,7 @@ export const DMListContainer = styled.div`
     border-radius: 50%;
     border: 1px solid ${COLOR.TEXT_GRAY};
     margin-bottom: 1px;
+    margin-right: 5px;
 
     &.online {
       border-color: ${COLOR.ACTIVE};

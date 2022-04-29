@@ -8,6 +8,10 @@ export const ChatItemContainer = styled.li`
   &:hover {
     background: #eee;
   }
+
+  &:first-of-type {
+    margin-top: auto;
+  }
 `;
 
 export const ChatProfile = styled.div`
@@ -17,6 +21,7 @@ export const ChatProfile = styled.div`
 
 export const ChatContent = styled.div`
   padding: 0 8px;
+  flex: 1;
   .user-data {
     display: flex;
     align-items: center;

@@ -11,6 +11,9 @@ import { IoMdSend } from 'react-icons/io';
 import { GoChevronDown } from 'react-icons/go';
 import { STYLE } from 'styles/variables';
 import axios from 'axios';
+import useSWR from 'swr';
+import { IChat, IDM } from 'types';
+import { fetcher } from 'utils';
 
 interface ChatBoxProps {
   url: string;
@@ -20,6 +23,8 @@ interface ChatBoxProps {
 export const ChatBox = ({ url, name }: ChatBoxProps) => {
   const [chat, setChat] = useState('');
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
+
+  const { mutate } = useSWR<IDM[] | IChat[]>(`${url}?perPage=20&page=1`, fetcher);
 
   const handleSubmit = (
     e: React.FormEvent<HTMLFormElement> | React.KeyboardEvent<HTMLTextAreaElement>
@@ -34,6 +39,7 @@ export const ChatBox = ({ url, name }: ChatBoxProps) => {
         })
         .then(() => {
           setChat('');
+          mutate();
         })
         .catch(console.error);
     }

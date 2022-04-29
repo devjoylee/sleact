@@ -36,7 +36,6 @@ export const DMList = () => {
     // online 접속중인 유저값 불러오기
     socket?.on('onlineList', (data: number[]) => {
       setOnlineList(data);
-      console.log(data);
     });
 
     return () => {

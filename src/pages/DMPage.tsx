@@ -11,8 +11,6 @@ export const DMPage = () => {
   const { data: member } = useSWR<IUser>(`/api/workspaces/${workspace}/users/${id}`, fetcher);
   const { data: chats } = useSWR<IDM[]>(`${postURL}?perPage=20&page=1`, fetcher);
 
-  console.log(chats);
-
   return (
     <>
       <DMHeader member={member} />

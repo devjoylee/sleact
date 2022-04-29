@@ -4,8 +4,6 @@ const backUrl = 'http://localhost:3095';
 const sockets: { [key: string]: Socket } = {};
 
 function useSocket(workspace?: string): [Socket | undefined, () => void] {
-  console.log('Socket rerender');
-
   const disconnect = () => {
     if (workspace) {
       sockets[workspace].disconnect();

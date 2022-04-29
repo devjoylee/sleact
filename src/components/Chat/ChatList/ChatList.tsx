@@ -10,6 +10,8 @@ interface ChatListProps {
 
 export const ChatList = ({ chats }: ChatListProps) => {
   const scrollbarRef = useRef(null);
+  const dateToTime = (date: Date) => new Date(date).getTime();
+  chats?.sort((a: IDM, b: IDM) => dateToTime(a.createdAt) - dateToTime(b.createdAt));
 
   return (
     <ChatListContainer>

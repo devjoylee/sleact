@@ -10,8 +10,6 @@ export const ChannelPage = () => {
   const postURL = `/api/workspaces/${workspace}/channels/${name}/chats`;
   const { data: chats } = useSWR<IChat[]>(`${postURL}?perPage=20&page=1`, fetcher);
 
-  console.log(chats);
-
   return (
     <>
       <ChannelHeader />
