@@ -2,6 +2,8 @@ import React from 'react';
 import { IDM } from 'types';
 import { ChatItemContainer, ChatProfile, ChatContent } from './styles';
 import gravatar from 'gravatar';
+import dayjs from 'dayjs';
+import 'dayjs/locale/ko';
 
 interface ChatListProps {
   chatData: IDM;
@@ -18,7 +20,7 @@ export const ChatItem = ({ chatData }: ChatListProps) => {
       <ChatContent>
         <p className='user-data'>
           <b className='name'>{Sender.nickname}</b>
-          <span className='date'>{createdAt}</span>
+          <span className='date'>{dayjs(createdAt).format('A h:mm')}</span>
         </p>
         <p className='text'>{content}</p>
       </ChatContent>

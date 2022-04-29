@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
 
 export const reset = css`
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;800&display=swap');
   *,
   *::before,
   *::after {
@@ -9,7 +10,7 @@ export const reset = css`
     box-sizing: border-box;
   }
   body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
   }
   h1,
   h2,

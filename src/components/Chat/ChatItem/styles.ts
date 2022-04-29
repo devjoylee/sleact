@@ -1,10 +1,9 @@
 import styled from '@emotion/styled';
-import { COLOR } from 'styles/variables';
 
 export const ChatItemContainer = styled.li`
   display: flex;
   align-items: center;
-  padding: 10px;
+  padding: 10px 20px;
 
   &:hover {
     background: #eee;
@@ -12,15 +11,17 @@ export const ChatItemContainer = styled.li`
 `;
 
 export const ChatProfile = styled.div`
+  display: flex;
   width: 36px;
-  margin-right: 8px;
 `;
 
 export const ChatContent = styled.div`
+  padding: 0 8px;
   .user-data {
     display: flex;
     align-items: center;
     .name {
+      font-size: 15px;
       font-weight: bold;
       margin-right: 8px;
       letter-spacing: -0.5px;
@@ -30,5 +31,8 @@ export const ChatContent = styled.div`
       color: #555;
       vertical-align: middle;
     }
+  }
+  .text {
+    font-size: 15px;
   }
 `;
