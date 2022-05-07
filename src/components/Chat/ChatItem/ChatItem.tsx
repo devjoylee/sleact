@@ -19,7 +19,7 @@ export const ChatItem = ({ chatData }: ChatListProps) => {
       <ChatContent>
         <p className='user-data'>
           <b className='name'>{Sender.nickname}</b>
-          <span className='date'>{dayjs(createdAt).format('h:mm A')}</span>
+          <span className='createdAt'>{dayjs(createdAt).format('h:mm A')}</span>
         </p>
         <p className='text'>{content}</p>
       </ChatContent>
