@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { RefObject, useRef, useState } from 'react';
 import {
   ChatBoxContainer,
   ChatTextArea,
@@ -14,13 +14,15 @@ import axios from 'axios';
 import useSWR from 'swr';
 import { IChat, IDM } from 'types';
 import { fetcher } from 'utils';
+import Scrollbars from 'react-custom-scrollbars';
 
 interface ChatBoxProps {
   url: string;
   name: string | undefined;
+  scrollRef: RefObject<Scrollbars>;
 }
 
-export const ChatBox = ({ url, name }: ChatBoxProps) => {
+export const ChatBox = ({ url, name, scrollRef }: ChatBoxProps) => {
   const [chat, setChat] = useState('');
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -38,6 +40,7 @@ export const ChatBox = ({ url, name }: ChatBoxProps) => {
           content: chat,
         })
         .then(() => {
+          scrollRef.current?.scrollToBottom();
           setChat('');
           mutate();
         })

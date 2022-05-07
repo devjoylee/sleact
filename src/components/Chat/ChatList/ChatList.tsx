@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { RefObject, useEffect } from 'react';
 import { IDM } from 'types';
 import { ChatItem } from 'components';
 import { ChatListContainer, DateSection } from './styles';
@@ -7,18 +7,22 @@ import { makeDateSection } from 'utils';
 
 interface ChatListProps {
   chats: IDM[] | undefined;
+  scrollRef: RefObject<Scrollbars>;
 }
 
-export const ChatList = ({ chats }: ChatListProps) => {
-  const scrollbarRef = useRef(null);
-  const dateToTime = (date: Date) => new Date(date).getTime();
-  chats?.sort((a: IDM, b: IDM) => dateToTime(a.createdAt) - dateToTime(b.createdAt));
+export const ChatList = ({ chats, scrollRef }: ChatListProps) => {
+  const dateSection = makeDateSection(chats ? [...chats].reverse() : []);
 
-  const dateSection = makeDateSection(chats);
+  // 로딩 시 스크롤바 가장 아래로
+  useEffect(() => {
+    if (chats?.length) {
+      scrollRef.current?.scrollToBottom();
+    }
+  }, [chats, scrollRef]);
 
   return (
     <ChatListContainer>
-      <Scrollbars autoHide ref={scrollbarRef}>
+      <Scrollbars autoHide ref={scrollRef}>
         {Object.keys(dateSection).map((date) => (
           <DateSection>
             <p className='date'>{date}</p>
