@@ -5,6 +5,7 @@ import { fetcher, validate } from 'utils';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import useSWR from 'swr';
+import { IUser } from 'types';
 
 export const LoginForm = () => {
   const { values, handleChange, resetForm } = useForm({
@@ -15,7 +16,7 @@ export const LoginForm = () => {
   const { errors, handleFormCheck } = useValidate(values, validate);
   const { email, password } = values;
 
-  const { data, mutate } = useSWR('/api/users', fetcher, {
+  const { data, mutate } = useSWR<IUser>('/api/users', fetcher, {
     dedupingInterval: 100000, // get data from cashe
   });
 
@@ -26,9 +27,9 @@ export const LoginForm = () => {
     if (!Object.keys(errors).length) {
       axios
         .post('/api/users/login', { email, password }, { withCredentials: true })
-        .then((res) => {
+        .then(() => {
           alert('로그인에 성공하였습니다.');
-          mutate(res.data, false);
+          mutate();
           resetForm();
         })
         .catch((error) => {

@@ -24,7 +24,7 @@ export const ChatList = ({ chats, scrollRef }: ChatListProps) => {
     <ChatListContainer>
       <Scrollbars autoHide ref={scrollRef}>
         {Object.keys(dateSection).map((date) => (
-          <DateSection>
+          <DateSection key={date}>
             <p className='date'>{date}</p>
             {dateSection[date]?.map((chat) => (
               <ChatItem key={chat.id} chatData={chat} />

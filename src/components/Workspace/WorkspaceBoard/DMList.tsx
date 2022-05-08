@@ -28,7 +28,6 @@ export const DMList = () => {
   const isOnline = (id: number) => onlineList.includes(id);
 
   useEffect(() => {
-    console.log('DMList: entered workspace :', workspace);
     setOnlineList([]);
   }, [workspace]);
 

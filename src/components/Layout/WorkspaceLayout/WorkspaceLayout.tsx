@@ -23,12 +23,12 @@ export const WorkspaceLayout = () => {
   // 소켓 연결
   useEffect(() => {
     if (channelData && userData && socket) {
-      console.log(socket);
+      // console.log(socket);
       socket.emit('login', { id: userData.id, channels: channelData.map((v) => v.id) });
     }
   }, [socket, channelData, userData]);
 
-  // 소켓 연결 해제 (workspace가 바뀔 때)
+  // // 소켓 연결 해제 (workspace가 바뀔 때)
   // useEffect(() => {
   //   return () => {
   //     disconnect();
