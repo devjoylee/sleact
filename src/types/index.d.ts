@@ -29,6 +29,8 @@ export interface IChannel {
   WorkspaceId: number;
 }
 
+export type ChatType = IChat | IDM;
+
 export interface IChat {
   // 채널의 채팅
   id: number;

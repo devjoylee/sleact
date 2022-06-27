@@ -19,7 +19,7 @@ interface ChatBoxProps {
   url: string;
   name: string | undefined;
   scrollRef: RefObject<Scrollbars>;
-  mutate: KeyedMutator<IDM[][]> | KeyedMutator<IChat[]>;
+  mutate: KeyedMutator<IDM[][]> | KeyedMutator<IChat[][]>;
 }
 
 export const ChatBox = ({ url, name, scrollRef, mutate }: ChatBoxProps) => {
