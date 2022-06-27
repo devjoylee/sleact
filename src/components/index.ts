@@ -18,8 +18,7 @@ export { NewChannelModal } from './Workspace/Modal/NewChannelModal';
 export { NewWorkspaceModal } from './Workspace/Modal/NewWorkspaceModal';
 
 // Chat
-export { ChannelHeader } from './Chat/ChatHeader/ChannelHeader';
-export { DMHeader } from './Chat/ChatHeader/DMHeader';
+export { ChatHeader } from './Chat/ChatHeader/ChatHeader';
 export { ChatList } from './Chat/ChatList/ChatList';
 export { ChatItem } from './Chat/ChatItem/ChatItem';
 export { ChatBox } from './Chat/ChatBox/ChatBox';

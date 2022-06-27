@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { ChannelHeader, ChatBox, ChatList } from 'components';
+import { ChatHeader, ChatBox, ChatList } from 'components';
 import { useParams } from 'react-router-dom';
 import useSWRInfinite from 'swr/infinite';
 import { IChat } from 'types';
@@ -18,7 +18,7 @@ export const ChannelPage = () => {
 
   return (
     <>
-      <ChannelHeader />
+      <ChatHeader />
       <ChatList chats={chats as IChat[][]} ref={scrollRef} setSize={setSize} />
       <ChatBox url={postURL} name={name} scrollRef={scrollRef} mutate={mutate} />
     </>

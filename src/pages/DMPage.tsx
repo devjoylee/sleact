@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { ChatBox, ChatList, DMHeader } from 'components';
+import { ChatBox, ChatList, ChatHeader } from 'components';
 import { useParams } from 'react-router-dom';
 import useSWR from 'swr';
 import useSWRInfinite from 'swr/infinite';
@@ -20,7 +20,7 @@ export const DMPage = () => {
 
   return (
     <>
-      <DMHeader member={member} />
+      <ChatHeader member={member} />
       <ChatList chats={chats as IDM[][]} ref={scrollRef} setSize={setSize} />
       <ChatBox url={postURL} name={member?.nickname} scrollRef={scrollRef} mutate={mutate} />
     </>
