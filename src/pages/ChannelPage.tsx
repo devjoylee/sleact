@@ -9,13 +9,13 @@ import Scrollbars from 'react-custom-scrollbars';
 export const ChannelPage = () => {
   const { workspace, name } = useParams();
   const postURL = `/api/workspaces/${workspace}/channels/${name}/chats`;
-  const { data: chats } = useSWR<IChat[]>(`${postURL}?perPage=20&page=1`, fetcher);
+  const { data: chats, mutate } = useSWR<IChat[]>(`${postURL}?perPage=20&page=1`, fetcher);
   const scrollRef = useRef<Scrollbars>(null);
 
   return (
     <>
       <ChannelHeader />
-      <ChatBox url={postURL} name={name} scrollRef={scrollRef} />
+      <ChatBox url={postURL} name={name} scrollRef={scrollRef} mutate={mutate} />
     </>
   );
 };

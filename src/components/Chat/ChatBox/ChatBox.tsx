@@ -11,22 +11,20 @@ import { IoMdSend } from 'react-icons/io';
 import { GoChevronDown } from 'react-icons/go';
 import { STYLE } from 'styles/variables';
 import axios from 'axios';
-import useSWR from 'swr';
+import { KeyedMutator } from 'swr';
 import { IChat, IDM } from 'types';
-import { fetcher } from 'utils';
 import Scrollbars from 'react-custom-scrollbars';
 
 interface ChatBoxProps {
   url: string;
   name: string | undefined;
   scrollRef: RefObject<Scrollbars>;
+  mutate: KeyedMutator<IDM[][]> | KeyedMutator<IChat[]>;
 }
 
-export const ChatBox = ({ url, name, scrollRef }: ChatBoxProps) => {
+export const ChatBox = ({ url, name, scrollRef, mutate }: ChatBoxProps) => {
   const [chat, setChat] = useState('');
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
-
-  const { mutate } = useSWR<IDM[] | IChat[]>(`${url}?perPage=20&page=1`, fetcher);
 
   const handleSubmit = (
     e: React.FormEvent<HTMLFormElement> | React.KeyboardEvent<HTMLTextAreaElement>

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { ChatBox, ChatList, DMHeader } from 'components';
 import { useParams } from 'react-router-dom';
 import useSWR from 'swr';
@@ -11,10 +11,11 @@ export const DMPage = () => {
   const { workspace, id } = useParams();
   const postURL = `/api/workspaces/${workspace}/dms/${id}/chats`;
   const { data: member } = useSWR<IUser>(`/api/workspaces/${workspace}/users/${id}`, fetcher);
-  const { data: chats, setSize } = useSWRInfinite<IDM[]>(
-    (idx: number) => `${postURL}?perPage=20&page=${idx + 1}`,
-    fetcher
-  );
+  const {
+    data: chats,
+    setSize,
+    mutate,
+  } = useSWRInfinite<IDM[]>((idx: number) => `${postURL}?perPage=20&page=${idx + 1}`, fetcher);
   const scrollRef = useRef<Scrollbars>(null);
 
   const isEmpty = chats?.[0]?.length === 0;
@@ -24,7 +25,7 @@ export const DMPage = () => {
     <>
       <DMHeader member={member} />
       <ChatList chats={chats} ref={scrollRef} setSize={setSize} isReachingEnd={isReachingEnd} />
-      <ChatBox url={postURL} name={member?.nickname} scrollRef={scrollRef} />
+      <ChatBox url={postURL} name={member?.nickname} scrollRef={scrollRef} mutate={mutate} />
     </>
   );
 };

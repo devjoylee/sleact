@@ -28,13 +28,13 @@ export const ChatList = forwardRef<Scrollbars, ChatListProps>(
       }
     };
 
-    // // 로딩 시 스크롤바 가장 아래로
-    // useEffect(() => {
-    //   const current = (scrollRef as RefObject<Scrollbars>)?.current;
-    //   if (chats?.length) {
-    //     current?.scrollToBottom();
-    //   }
-    // }, [chats, scrollRef]);
+    // 로딩 시 스크롤바 가장 아래로
+    useEffect(() => {
+      const current = (scrollRef as RefObject<Scrollbars>)?.current;
+      if (chats?.length) {
+        current?.scrollToBottom();
+      }
+    }, [chats]);
 
     return (
       <ChatListContainer>
