@@ -29,13 +29,16 @@ export const UserDropdown = ({ handleClose }: DropdownProp) => {
   return (
     <DropdownLayout handleClose={handleClose} style={{ top: 40, right: 10 }}>
       <UserInfo>
-        <img src={gravatar.url(user.email, { s: '28px', d: 'retro' })} alt={user.nickname} />
+        <img
+          src={gravatar.url(user.email, { s: '28px', d: 'retro' })}
+          alt={user.nickname}
+        />
         <div>
-          <p className='user-name'>Joy</p>
+          <p className='user-name'>{user.nickname}</p>
           <p className='user-active'>Active</p>
         </div>
       </UserInfo>
-      <li onClick={handleLogout}>로그아웃</li>
+      <li onClick={handleLogout}>Log out</li>
     </DropdownLayout>
   );
 };

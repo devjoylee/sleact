@@ -26,9 +26,13 @@ export const LoginForm = () => {
     e.preventDefault();
     if (!Object.keys(errors).length) {
       axios
-        .post('/api/users/login', { email, password }, { withCredentials: true })
+        .post(
+          '/api/users/login',
+          { email, password },
+          { withCredentials: true }
+        )
         .then(() => {
-          alert('로그인에 성공하였습니다.');
+          alert('Success! You are now signed in.');
           mutate();
           resetForm();
         })
@@ -46,11 +50,17 @@ export const LoginForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <Label htmlFor='email'>
-        <span>이메일 주소</span>
-        <Input type='text' id='email' name='email' value={email} onChange={handleChange} />
+        <span>E-mail</span>
+        <Input
+          type='text'
+          id='email'
+          name='email'
+          value={email}
+          onChange={handleChange}
+        />
       </Label>
       <Label htmlFor='password'>
-        <span>비밀번호</span>
+        <span>Password</span>
         <Input
           type='password'
           id='password'
@@ -65,7 +75,7 @@ export const LoginForm = () => {
       ))}
 
       <Button type='submit' onClick={handleFormCheck}>
-        로그인
+        Login
       </Button>
     </form>
   );

@@ -25,7 +25,11 @@ export const NewMemberModal = ({ closeModal }: ModalProp) => {
     if (!member || !member.trim()) return;
 
     axios
-      .post(`/api/workspaces/${workspace}/members`, { email: member }, { withCredentials: true })
+      .post(
+        `/api/workspaces/${workspace}/members`,
+        { email: member },
+        { withCredentials: true }
+      )
       .then(() => {
         mutate();
         resetForm();
@@ -37,10 +41,16 @@ export const NewMemberModal = ({ closeModal }: ModalProp) => {
     <ModalLayout handleClose={closeModal}>
       <form onSubmit={inviteMember}>
         <Label htmlFor='member'>
-          <span>이메일</span>
-          <Input type='email' id='member' name='member' value={member} onChange={handleChange} />
+          <span>E-mail</span>
+          <Input
+            type='email'
+            id='member'
+            name='member'
+            value={member}
+            onChange={handleChange}
+          />
         </Label>
-        <Button type='submit'>초대하기</Button>
+        <Button type='submit'>Invite a new member</Button>
       </form>
     </ModalLayout>
   );

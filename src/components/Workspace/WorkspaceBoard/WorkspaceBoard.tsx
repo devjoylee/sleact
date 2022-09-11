@@ -15,11 +15,14 @@ export const WorkspaceBoard = () => {
   const { workspace } = useParams();
   const { data: userData } = useSWR<IUser>('/api/users', fetcher);
 
-  const currentWs = userData?.Workspaces.filter((ws) => ws.url === workspace);
+  const currentWs =
+    userData && userData?.Workspaces.filter((ws) => ws.url === workspace);
 
   return (
     <BoardContainer>
-      <WorkspaceName onClick={toggleDropdown}>{currentWs && currentWs[0].name}</WorkspaceName>
+      <WorkspaceName onClick={toggleDropdown}>
+        {currentWs && currentWs[0].name}
+      </WorkspaceName>
       {dropdown && <Dropdown handleClose={toggleDropdown} />}
       <ListBoard>
         <ChannelList />

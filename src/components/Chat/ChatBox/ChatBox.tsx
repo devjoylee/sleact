@@ -27,7 +27,9 @@ export const ChatBox = ({ url, name, scrollRef, mutate }: ChatBoxProps) => {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
   const handleSubmit = (
-    e: React.FormEvent<HTMLFormElement> | React.KeyboardEvent<HTMLTextAreaElement>
+    e:
+      | React.FormEvent<HTMLFormElement>
+      | React.KeyboardEvent<HTMLTextAreaElement>
   ) => {
     e.preventDefault();
 
@@ -38,7 +40,6 @@ export const ChatBox = ({ url, name, scrollRef, mutate }: ChatBoxProps) => {
           content: chat,
         })
         .then(() => {
-          scrollRef.current?.scrollToBottom();
           setChat('');
           mutate();
         })
@@ -50,6 +51,7 @@ export const ChatBox = ({ url, name, scrollRef, mutate }: ChatBoxProps) => {
     if (e.key === 'Enter') {
       if (!e.shiftKey) {
         handleSubmit(e);
+        scrollRef.current?.scrollToBottom();
         if (textAreaRef.current) {
           textAreaRef.current.style.height = `${STYLE.CHAT_INPUT_HEIGHT}`;
         }
@@ -60,7 +62,8 @@ export const ChatBox = ({ url, name, scrollRef, mutate }: ChatBoxProps) => {
     setChat(e.target.value);
     if (textAreaRef.current) {
       textAreaRef.current.style.height = `${STYLE.CHAT_INPUT_HEIGHT}`;
-      textAreaRef.current.style.height = textAreaRef.current.scrollHeight + 'px';
+      textAreaRef.current.style.height =
+        textAreaRef.current.scrollHeight + 'px';
     }
   };
 
@@ -71,7 +74,7 @@ export const ChatBox = ({ url, name, scrollRef, mutate }: ChatBoxProps) => {
           value={chat}
           onKeyDown={handleEnter}
           onChange={handleChange}
-          placeholder={`${name}에 메세지 보내기`}
+          placeholder={`Send a message to ${name}`}
           ref={textAreaRef}
         />
         <Toolbox>

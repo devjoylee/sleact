@@ -44,14 +44,26 @@ export const NewWorkspaceModal = ({ closeModal }: ModalProp) => {
     <ModalLayout handleClose={closeModal}>
       <form onSubmit={createWorkspace}>
         <Label htmlFor='wsname'>
-          <span>워크스페이스 이름</span>
-          <Input type='text' id='wsname' name='wsname' value={wsname} onChange={handleChange} />
+          <span>Workspace Name</span>
+          <Input
+            type='text'
+            id='wsname'
+            name='wsname'
+            value={wsname}
+            onChange={handleChange}
+          />
         </Label>
         <Label htmlFor='wsurl'>
-          <span>워크스페이스 url</span>
-          <Input type='text' id='wsurl' name='wsurl' value={wsurl} onChange={handleChange} />
+          <span>Workspace url</span>
+          <Input
+            type='text'
+            id='wsurl'
+            name='wsurl'
+            value={wsurl}
+            onChange={handleChange}
+          />
         </Label>
-        <Button type='submit'>생성하기</Button>
+        <Button type='submit'>Create a new workspace</Button>
       </form>
     </ModalLayout>
   );

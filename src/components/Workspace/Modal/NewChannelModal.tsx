@@ -24,7 +24,11 @@ export const NewChannelModal = ({ closeModal }: ModalProp) => {
     e.preventDefault();
 
     axios
-      .post(`/api/workspaces/${workspace}/channels`, { name: channel }, { withCredentials: true })
+      .post(
+        `/api/workspaces/${workspace}/channels`,
+        { name: channel },
+        { withCredentials: true }
+      )
       .then(() => {
         mutate();
         resetForm();
@@ -36,10 +40,16 @@ export const NewChannelModal = ({ closeModal }: ModalProp) => {
     <ModalLayout handleClose={closeModal}>
       <form onSubmit={createChannel}>
         <Label htmlFor='channel'>
-          <span>채널명</span>
-          <Input type='text' id='channel' name='channel' value={channel} onChange={handleChange} />
+          <span>Channel Name</span>
+          <Input
+            type='text'
+            id='channel'
+            name='channel'
+            value={channel}
+            onChange={handleChange}
+          />
         </Label>
-        <Button type='submit'>생성하기</Button>
+        <Button type='submit'>Create a channel</Button>
       </form>
     </ModalLayout>
   );

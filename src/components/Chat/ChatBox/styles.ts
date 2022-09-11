@@ -18,7 +18,7 @@ export const ChatTextArea = styled.textarea`
   display: block;
   /* font-family: Slack-Lato, appleLogo, sans-serif; */
   margin: 18px 20px;
-  width: 100%;
+  width: 95%;
   height: ${STYLE.CHAT_INPUT_HEIGHT};
   font-size: 15px;
   line-height: 22px;

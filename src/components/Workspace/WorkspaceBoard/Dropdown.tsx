@@ -33,9 +33,9 @@ export const Dropdown = ({ handleClose }: DropdownProp) => {
   return (
     <>
       <DropdownLayout handleClose={handleClose} style={{ top: 55, left: 10 }}>
-        <li onClick={handleNewChannelModal}>채널 만들기</li>
-        <li onClick={handleNewMemberModal}>워크스페이스에 사용자 초대</li>
-        <li onClick={handleLogout}>로그아웃</li>
+        <li onClick={handleNewChannelModal}>Create a channel</li>
+        <li onClick={handleNewMemberModal}>Invite a new member</li>
+        <li onClick={handleLogout}>Logout</li>
         {newMember && <NewMemberModal closeModal={handleNewMemberModal} />}
         {newChannel && <NewChannelModal closeModal={handleNewChannelModal} />}
       </DropdownLayout>

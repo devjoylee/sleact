@@ -24,13 +24,13 @@ export const SignUpForm = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!Object.keys(errors).length) {
-      console.log('서버로 회원가입 loading...');
+      console.log('Request Sign-up loading...');
 
       axios
         .post('/api/users', { email, nickname, password })
         .then((res) => {
           console.log(res);
-          alert('회원가입에 성공하였습니다.');
+          alert('You have successfully signed up.');
           resetForm();
           navigate('/login');
         })
@@ -48,11 +48,17 @@ export const SignUpForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <Label htmlFor='email'>
-        <span>이메일 주소</span>
-        <Input type='text' id='email' name='email' value={email} onChange={handleChange} />
+        <span>E-mail</span>
+        <Input
+          type='text'
+          id='email'
+          name='email'
+          value={email}
+          onChange={handleChange}
+        />
       </Label>
       <Label htmlFor='nickname'>
-        <span>닉네임</span>
+        <span>Nickname</span>
         <Input
           type='text'
           id='nickname'
@@ -62,7 +68,7 @@ export const SignUpForm = () => {
         />
       </Label>
       <Label htmlFor='password'>
-        <span>비밀번호</span>
+        <span>Password</span>
         <Input
           type='password'
           id='password'
@@ -72,7 +78,7 @@ export const SignUpForm = () => {
         />
       </Label>
       <Label htmlFor='passwordCheck'>
-        <span>비밀번호 확인</span>
+        <span>Confirm Password</span>
         <Input
           type='password'
           id='passwordCheck'
@@ -87,7 +93,7 @@ export const SignUpForm = () => {
       ))}
 
       <Button type='submit' onClick={handleFormCheck}>
-        회원가입
+        Sign Up
       </Button>
     </form>
   );
